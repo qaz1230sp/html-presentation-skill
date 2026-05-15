@@ -20,8 +20,11 @@ This skill generates single-file HTML presentations for reveal.js-based recordin
 - Never invent slide structure. Read the selected file in `layouts/` and copy the **HTML template** verbatim.
 - Never build chart config from a blank object. Read the selected file in `charts/` and copy the **preset option** verbatim before replacing placeholders and data.
 - Always read `rules/composition.md` before planning the deck so slide order, pacing, density, and fragments stay within system rules.
+- Always read `rules/animation.md` before writing fragments and transitions so animations feel cinematic, varied, and content-driven — not generic AI output.
 
 **Positioning & content rules:** Read `rules/positioning.md` — covers layout centering strategy, footer-note placement, and content style rules. Violating these causes visual bugs.
+
+**Animation & dynamics rules:** Read `rules/animation.md` — covers fragment variety, per-slide transitions, SVG visual demos, anti-AI-patterns, and performance animation requirements. Violating these makes the deck feel flat and generic.
 
 
 ## Configuration
@@ -81,33 +84,11 @@ When the user asks to update configuration, edit `{HOME}/html-presentation-skill
 
 ## Workflow: New Presentation
 
-### Step 0: Confirm with User
+### Step 0: Read & Understand Source Material
 
-Before generating, ask the user (via `ask_user` tool) to confirm key unknowns. Never ask more than 3 questions. Pick from:
+Before any planning, **fully read and understand** the source material.
 
-1. **Language / 语言**: "PPT 使用中文还是英文？" Choices: 中文 (Recommended), English. Skip if user's request language is obvious or config `default_language` applies.
-2. **Theme**: Skip if specified. Choices: Glassmorphism, Apple Keynote, Cyberpunk, Gradient Story, Editorial, Luxury Minimal
-3. **Author / 署名**: "PPT 上署名是什么？" Use config `author` as default if set. Skip if user already specified or config has author.
-4. **Slide count**: Suggest based on source length. Skip if specified.
-5. **Outline**: Present slide titles + layout types. Let user adjust.
-6. **Special pages**: Q&A, TOC — only ask if unclear.
-
-**Skip rules:** Don't re-ask answered questions. For document conversions, infer language from source content and just confirm outline. For simple topic requests, ask language (if ambiguous) + theme + outline only.
-
-### Step 1: Parse Request
-
-Determine:
-- source mode: topic / document / hybrid
-- presentation language
-- explicit or implied theme request
-- target audience and tone
-- requested slide count or likely duration
-- whether charts, code, screenshots, architecture diagrams, or quotes are needed
-- whether the output is a brand-new deck or a modification of an existing file
-
-If slide count is not provided, infer it from the amount of source material and the pacing guidance in `rules/composition.md`.
-
-### Step 2: Read Source Material (if document provided)
+**If user provides a document:**
 
 Use the file reader:
 
@@ -124,7 +105,8 @@ Supported source types from the reader:
 - Images: `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.svg`
 
 Reading rules:
-- Merge extracted sections, pages, or slides into one working outline.
+- Read the **entire** document before making any decisions.
+- Identify the core message, narrative thread, and logical structure.
 - Preserve code blocks from the source.
 - Use headings, pages, or slide titles as structure hints, not as the final slide order.
 - If the reader returns `install_cmd`, install the dependency and re-run the reader.
@@ -140,10 +122,77 @@ Image role classification:
 
 Map image roles using `rules/composition.md` → **Image Placement Rules**.
 
+**If user provides only a topic:** Ask for more context or key points to include. Do not fabricate content that the user has not provided.
+
+### Step 1: Deep Analysis & Content Restructuring
+
+After reading, perform a deep analysis of the material. This is not a 1:1 translation of the source — you are **restructuring** raw material into a presentation narrative.
+
+**Analysis tasks:**
+
+1. **Extract the core thesis** — What is the single most important message? Everything else supports it.
+2. **Identify information hierarchy** — What is essential (must show), important (should show), and supplementary (can skip or put in speaker notes)?
+3. **Detect logical relationships** — Which concepts are parallel (→ card-grid), sequential (→ timeline), contrasting (→ comparison), or causal (→ flowchart)?
+4. **Find the "golden data"** — Key numbers, quotes, before/after comparisons, and concrete examples that make the story credible.
+5. **Choose a narrative arc** — Based on `rules/composition.md`, select the arc template (Technical Deep Dive / Product Launch / Knowledge Share) that best fits the material's natural flow.
+6. **Decide what to merge or cut** — Consolidate related but scattered sections; drop content that doesn't serve the core thesis. A slide deck is not a document mirror.
+
+### Step 2: Build Structured Outline & Confirm with User
+
+**This is a mandatory checkpoint.** Do NOT generate HTML until the user confirms the outline.
+
+Based on the deep analysis, produce a **structured outline** and present it to the user via `ask_user`. The outline must include:
+
+1. **Content summary** (2-3 sentences): What this deck is about, who the audience is, what the takeaway should be.
+2. **Slide plan table**: For each slide, show:
+   - Slide number
+   - Layout type (e.g., `title-hero`, `two-column`, `card-grid`)
+   - Slide title
+   - Key content points (2-3 bullets summarizing what will appear)
+   - Fragment/animation note (if any, e.g., "items reveal one by one")
+3. **Theme recommendation**: Which theme and why.
+4. **Total slide count** and estimated duration.
+
+**Example outline format:**
+
+```
+📊 内容概要：介绍 AI 驱动的团队效率提升方案，面向技术管理层，核心结论是...
+
+| # | 布局 | 标题 | 要点 |
+|---|------|------|------|
+| 1 | title-hero | AI 驱动的团队效率提升 | 主标题 + 副标题 + 署名 |
+| 2 | bullet-points | 团队面临的挑战 | 知识分散 / 重复工作 / Onboarding 断层 |
+| 3 | two-column | 两大核心平台 | 左: LLM Wiki 编译器模式 / 右: Skill Hub 能力分发 |
+| ... | ... | ... | ... |
+
+🎨 推荐主题：Glassmorphism（技术分享最佳）
+📄 共 11 页，预计 8-10 分钟
+```
+
+**Outline quality rules:**
+
+- Each slide must have a clear, distinct message — no "filler" slides.
+- Content must be **restructured for presentation logic**, not copied in document order.
+- Related but scattered sections should be **consolidated** (e.g., merge "架构特点" into "Skill Hub" slide instead of giving it a separate page).
+- Short standalone content (a single quote, a one-line concept) should be **woven into adjacent slides** rather than given a dedicated page, unless it serves as a deliberate breathing slide.
+- List/bullet slides should show **the first item by default** (not as a fragment); remaining items are fragments.
+- Consider layout variety: use 2×2 grids for 4 parallel items, not always 1×2 two-column.
+
+**After presenting the outline, ask the user to confirm.** Wait for their response before proceeding. If they request changes, revise the outline and re-confirm.
+
+Also confirm key unknowns (never ask more than 3 additional questions beyond the outline). Pick from:
+
+1. **Language / 语言**: Skip if obvious from content or config `default_language`.
+2. **Theme**: Skip if specified. Choices: Glassmorphism, Apple Keynote, Cyberpunk, Gradient Story, Editorial, Luxury Minimal.
+3. **Author / 署名**: Use config `author` as default. Skip if already known.
+4. **Special pages**: Q&A, TOC — only ask if unclear.
+
+**Skip rules:** Don't re-ask answered questions. For document conversions, infer language from source content.
+
 ### Step 3: Select Theme
 
 1. Read `rules/composition.md`, especially **Theme Selection Guide**.
-2. Choose the best theme for the topic, audience, and tone.
+2. Choose the best theme for the topic, audience, and tone (or use the one confirmed in Step 2).
 3. Read the selected file in `themes/`.
 4. Copy the theme's:
    - reveal.js theme CSS CDN link
@@ -158,14 +207,9 @@ Theme selection priority:
 3. topic fit from `rules/composition.md`
 4. config default
 
-### Step 4: Plan Slide Sequence
+### Step 4: Finalize Slide Sequence
 
-Before writing HTML, read `rules/composition.md` and choose a narrative arc template such as:
-- Technical Deep Dive
-- Product Launch
-- Knowledge Share
-
-Then map content to layouts using sequencing rules:
+Using the confirmed outline, finalize the slide sequence by applying `rules/composition.md` layout sequencing rules:
 - `title-hero` first
 - `end-cta` last
 - never repeat the same layout consecutively
@@ -174,6 +218,13 @@ Then map content to layouts using sequencing rules:
 - insert a breathing slide every 3-4 content-heavy slides
 - follow chart placement rules
 - respect content density maximums instead of shrinking text
+
+Also apply `rules/animation.md` for animation planning:
+- vary per-slide `data-transition` (at least 2 different types across the deck)
+- plan fragment types based on information relationships (progressive → `fade-up`, contrast → `fade-left/right`)
+- first list item on every slide is **always visible** (not a fragment)
+- plan at least 1 performance animation (counter roll, stroke draw, bar fill, or typewriter)
+- ensure adjacent slides do not share the same dominant animation
 
 Plan fragments before assembly:
 - follow each layout's fragment cap
@@ -189,9 +240,10 @@ For each planned slide:
 3. Replace `PLACEHOLDER` comments with actual content.
 4. Keep `style="overflow:hidden;"` on every `<section>`.
 5. Do not add `min-height` hacks to force content to fit.
-6. Optionally set per-slide transitions with `data-transition` attribute (e.g., `<section data-transition="fade">`). Available: `slide`, `fade`, `convex`, `concave`, `zoom`, `none`. Use sparingly — only for emphasis slides like title-hero or section-divider.
-7. For document conversions or detailed topics, add speaker notes with `<aside class="notes">` inside the `<section>`. Notes are invisible during display but accessible via speaker view (S key). Only add notes when the source material has more detail than fits on the slide.
-8. Keep the layout's fragment structure unless there is an explicit need to remove optional placeholders.
+6. Apply per-slide transitions per `rules/animation.md`: vary `data-transition` attribute (e.g., `zoom` for emphasis slides, `fade` for breathing slides, `convex` for spatial content). Available: `slide`, `fade`, `convex`, `concave`, `zoom`, `none`.
+7. For list/bullet slides, the **first item must always be visible** (not a fragment). Remaining items use fragments with varied types per `rules/animation.md` (e.g., `fade-up`, `fade-left`, `zoom-in`, `fade-in-then-semi-out`).
+8. For document conversions or detailed topics, add speaker notes with `<aside class="notes">` inside the `<section>`. Notes are invisible during display but accessible via speaker view (S key). Only add notes when the source material has more detail than fits on the slide.
+9. Keep the layout's fragment structure unless there is an explicit need to remove optional placeholders.
 
 If the slide needs a chart:
 1. Read the correct preset in `charts/`.
@@ -224,6 +276,10 @@ If the slide needs a **complex diagram** (architecture, data-flow, sequence, bra
 **When to use ink-graph vs CSS flowchart:**
 - **CSS flowchart** (`layouts/flowchart.md`): Simple linear A→B→C flows, 3-5 steps, no branching
 - **ink-graph** (on-demand install): Architecture diagrams, data-flow, sequence diagrams, branching decisions, >5 nodes, grouped/layered layouts, any diagram needing arrows with routing
+
+**When to use terminal-demo vs code-showcase:**
+- **Terminal Demo** (`layouts/terminal-demo.md`): CLI commands with execution output, install workflows, terminal interactions — uses typewriter typing animation + blinking cursor + staggered output reveal for cinematic effect
+- **Code Showcase** (`layouts/code-showcase.md`): Static code display with syntax highlighting — no animation needed
 
 Assembly principle: **select component → read file → copy verbatim → replace placeholders only**.
 

@@ -151,6 +151,7 @@ Fragments are useful for pacing, but too many create spacebar fatigue.
 | `toc` | 0 |
 | `section-divider` | 0 |
 | `table` | 0 |
+| `terminal-demo` | 0 |
 | `end-cta` | 0 |
 
 ### Presentation-level limit
@@ -159,6 +160,7 @@ Fragments are useful for pacing, but too many create spacebar fatigue.
 - Prefer fragments only when reveal order changes meaning.
 - Never fragment stat items, cards, or decorative elements.
 - If a slide needs more than its fragment allowance, split the slide.
+- **First-item-visible rule**: On any slide with a list or sequential items, the **first item must always be visible on slide entry** (not wrapped in a fragment). Only the 2nd item onward should be fragments. This ensures the slide never appears empty when first shown.
 
 ## Chart Placement Rules
 

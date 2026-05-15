@@ -34,6 +34,7 @@ Available layouts (read the corresponding file for HTML template):
 | Table | `layouts/table.md` | 0 | Structured data, specs |
 | TOC | `layouts/toc.md` | 0 | Agenda, chapter navigation |
 | Section Divider | `layouts/section-divider.md` | 0 | Chapter transitions |
+| Terminal Demo | `layouts/terminal-demo.md` | 0 | CLI commands, install workflows, terminal interactions |
 | End CTA | `layouts/end-cta.md` | 0 | Closing slide |
 
 ## Chart Reference

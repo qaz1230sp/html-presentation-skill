@@ -2,6 +2,7 @@
 
 Run this checklist before saving any presentation.
 
+## Structure & Layout
 - [ ] Every `<section>` has `style="overflow:hidden;"`
 - [ ] Content-heavy sections: `justify-content:flex-start`
 - [ ] Content-light sections (card-grid, stats-dashboard, icon-grid): body content wrapped in `flex:1; justify-content:center` div (h2 stays outside wrapper)
@@ -33,3 +34,14 @@ Run this checklist before saving any presentation.
 - [ ] All CDN links are correct (check theme file's CDN Links section)
 - [ ] Inline SVG diagrams (from ink-graph) have `width="100%"` and `max-height` constraint
 - [ ] Section divider slides use `.title-slide` class (auto-centers via CSS)
+
+## Animation & Dynamics (see `rules/animation.md` for details)
+- [ ] Adjacent slides do NOT share the same dominant animation/transition
+- [ ] Fragments within a slide use 2+ different types when count ≥ 2
+- [ ] At least 1 "performance animation" exists (counter roll / stroke draw / bar fill / typewriter)
+- [ ] No perpetual decorative animations (`infinite` keyframes) except typewriter cursor
+- [ ] Animation durations use non-round values (0.3s / 0.7s / 1.2s) for natural feel
+- [ ] No AI visual fingerprints (purple-pink gradients / emoji icons / fake data)
+- [ ] 8+ slide deck has at least 1 inline SVG or CSS visual demo
+- [ ] Per-slide `data-transition` has at least 2 different settings across the deck
+- [ ] Fragment type matches information relationship (progressive → fade-up, contrast → fade-left/right)
