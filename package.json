@@ -1,0 +1,49 @@
+{
+  "name": "@qaz1230sp/html-presentation",
+  "version": "1.1.0",
+  "description": "AI Agent Skill for generating beautiful single-file HTML presentations with reveal.js — 6 themes, 16 layouts, 8 chart presets",
+  "main": "SKILL.md",
+  "keywords": [
+    "copilot-skill",
+    "claude-code",
+    "agent-skill",
+    "html-presentation",
+    "reveal-js",
+    "slides",
+    "presentation",
+    "ppt",
+    "keynote",
+    "echarts",
+    "glassmorphism",
+    "cyberpunk",
+    "single-file",
+    "no-build"
+  ],
+  "author": "qaz1230sp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qaz1230sp/html-presentation-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qaz1230sp/html-presentation-skill/issues"
+  },
+  "homepage": "https://github.com/qaz1230sp/html-presentation-skill#readme",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "components/",
+    "layouts/",
+    "charts/",
+    "themes/",
+    "rules/",
+    "references/",
+    "scripts/",
+    "demos/"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

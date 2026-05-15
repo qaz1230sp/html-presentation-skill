@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Presentation Skill — Theme Gallery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f13;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 32px;
+      padding: 48px 40px 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #1a1a2e;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #2a2a3e;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .card .preview {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #0f0f18;
+    }
+    .card .preview iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 200%;
+      height: 200%;
+      border: none;
+      transform: scale(0.5);
+      transform-origin: top left;
+      pointer-events: none;
+    }
+    .card .info {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card .info h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .card .info .tag {
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .tag-glass { background: rgba(167,139,250,0.15); color: #a78bfa; }
+    .tag-keynote { background: rgba(96,165,250,0.15); color: #60a5fa; }
+    .tag-cyber { background: rgba(6,182,212,0.15); color: #06b6d4; }
+    .tag-gradient { background: rgba(251,146,60,0.15); color: #fb923c; }
+    .tag-editorial { background: rgba(248,113,113,0.15); color: #f87171; }
+    .tag-luxury { background: rgba(253,224,71,0.15); color: #fde047; }
+    .card .actions {
+      padding: 0 24px 20px;
+    }
+    .card .actions a {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+    .card .actions a:hover { opacity: 0.85; }
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: #64748b;
+      font-size: 0.85rem;
+      border-top: 1px solid #1e1e2e;
+    }
+    footer a { color: #818cf8; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎨 HTML Presentation Skill</h1>
+    <p>6 built-in themes — same topic, different visual styles. Click any card to open the full presentation.</p>
+  </header>
+
+  <div class="gallery">
+    <div class="card">
+      <div class="preview"><iframe src="glassmorphism-demo.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <h3>Glassmorphism</h3>
+        <span class="tag tag-glass">Frosted Glass</span>
+      </div>
+      <div class="actions"><a href="glassmorphism-demo.html" target="_blank">Open →</a></div>
+    </div>
+
+    <div class="card">
+      <div class="preview"><iframe src="apple-keynote-demo.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <h3>Apple Keynote</h3>
+        <span class="tag tag-keynote">Clean & Bold</span>
+      </div>
+      <div class="actions"><a href="apple-keynote-demo.html" target="_blank">Open →</a></div>
+    </div>
+
+    <div class="card">
+      <div class="preview"><iframe src="cyberpunk-demo.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <h3>Cyberpunk</h3>
+        <span class="tag tag-cyber">Neon Glow</span>
+      </div>
+      <div class="actions"><a href="cyberpunk-demo.html" target="_blank">Open →</a></div>
+    </div>
+
+    <div class="card">
+      <div class="preview"><iframe src="gradient-story-demo.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <h3>Gradient Story</h3>
+        <span class="tag tag-gradient">Warm Flow</span>
+      </div>
+      <div class="actions"><a href="gradient-story-demo.html" target="_blank">Open →</a></div>
+    </div>
+
+    <div class="card">
+      <div class="preview"><iframe src="editorial-demo.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <h3>Editorial</h3>
+        <span class="tag tag-editorial">Magazine Style</span>
+      </div>
+      <div class="actions"><a href="editorial-demo.html" target="_blank">Open →</a></div>
+    </div>
+
+    <div class="card">
+      <div class="preview"><iframe src="luxury-minimal-demo.html" loading="lazy"></iframe></div>
+      <div class="info">
+        <h3>Luxury Minimal</h3>
+        <span class="tag tag-luxury">Elegant Gold</span>
+      </div>
+      <div class="actions"><a href="luxury-minimal-demo.html" target="_blank">Open →</a></div>
+    </div>
+  </div>
+
+  <footer>
+    Built with <a href="https://github.com/qaz1230sp/html-presentation-skill">html-presentation-skill</a> · Powered by <a href="https://revealjs.com">reveal.js</a>
+  </footer>
+</body>
+</html>

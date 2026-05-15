@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Skill 入门指南 · Editorial Demo</title>
+  <!-- reveal.js core CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css">
+  <!-- Theme CSS (from theme file's CDN Links) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.min.css">
+  <!-- Highlight.js theme (from theme file's CDN Links) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/stackoverflow-light.min.css">
+  <style>
+:root {
+  --r-background-color: #fafaf8;
+  --r-main-font: "Segoe UI", system-ui, sans-serif;
+  --r-heading-font: "Georgia", "Noto Serif SC", "Times New Roman", serif;
+  --r-code-font: "Cascadia Code", "Fira Code", Consolas, monospace;
+  --r-main-color: #2c3e50;
+  --r-heading-color: #1a1a1a;
+  --r-link-color: #2980b9;
+  --r-link-color-hover: #1f6692;
+  --r-selection-background-color: rgba(192, 57, 43, 0.16);
+  --r-body-color: #2c3e50;
+  --r-muted-color: #95a5a6;
+  --r-strong-color: #c0392b;
+  --paper-bg: #fafaf8;
+  --paper-panel: #ffffff;
+  --paper-border: rgba(0, 0, 0, 0.08);
+  --paper-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --rule-color: rgba(44, 62, 80, 0.18);
+  --accent-primary: #c0392b;
+  --accent-secondary: #2c3e50;
+  --accent-tertiary: #27ae60;
+  --accent-info: #2980b9;
+  --accent-warm: #f4efe6;
+}
+.reveal {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 22%),
+    linear-gradient(90deg, rgba(44, 62, 80, 0.03) 0, rgba(44, 62, 80, 0.03) 1px, transparent 1px, transparent 100%),
+    linear-gradient(180deg, #fafaf8 0%, #f5f3ee 100%);
+  background-size: auto, 32px 32px, auto;
+  color: var(--r-main-color);
+  font-family: var(--r-main-font);
+}
+.reveal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.03), transparent 18%),
+    linear-gradient(180deg, transparent 72%, rgba(0, 0, 0, 0.03) 100%);
+  pointer-events: none;
+}
+.reveal .slides,
+.reveal .slides section {
+  text-align: left;
+}
+.reveal .slides section {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 60px 48px 42px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  margin: 0 0 0.45em;
+  font-family: var(--r-heading-font);
+  text-transform: none;
+}
+.reveal h1 {
+  color: var(--r-heading-color);
+  font-size: 2.48em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin-bottom: 0.26em;
+}
+.reveal h2 {
+  color: var(--r-heading-color);
+  font-size: 1.5em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  padding-bottom: 0.22em;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.18);
+}
+.reveal h3 {
+  color: var(--accent-secondary);
+  font-size: 1.06em;
+  font-weight: 700;
+}
+.reveal h4 {
+  color: var(--accent-primary);
+  font-size: 0.84em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.reveal p,
+.reveal li {
+  color: var(--r-body-color);
+  line-height: 1.72;
+  font-size: 0.82em;
+}
+.reveal strong {
+  color: var(--r-strong-color);
+  font-weight: 700;
+}
+.reveal a {
+  color: var(--accent-info);
+  text-decoration: underline;
+  text-decoration-color: rgba(41, 128, 185, 0.4);
+  text-underline-offset: 0.14em;
+}
+.reveal blockquote {
+  width: 100%;
+  margin: 1.1em 0 0;
+  padding: 18px 22px;
+  border-left: 5px solid var(--accent-primary);
+  background: #f4efe6;
+  color: #4a4039;
+  font-family: var(--r-heading-font);
+  font-size: 0.96em;
+  font-style: italic;
+  line-height: 1.58;
+  border-radius: 0 4px 4px 0;
+  box-shadow: none;
+}
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin: 0.36em 0 0.2em 0.45em;
+  padding-left: 0.6em;
+}
+.reveal li + li {
+  margin-top: 0.4em;
+}
+.reveal .panel li,
+.reveal .glass-card li,
+.reveal .info-card li,
+.reveal .compare-col li {
+  font-size: 0.76em;
+  color: #5a6a7a;
+  line-height: 1.68;
+}
+.reveal .panel ul,
+.reveal .glass-card ul,
+.reveal .info-card ul,
+.reveal .compare-col ul {
+  list-style: none;
+  padding-left: 0.2em;
+}
+.reveal .panel ul li::before,
+.reveal .glass-card ul li::before,
+.reveal .info-card ul li::before,
+.reveal .compare-col ul li::before {
+  content: "▸";
+  color: var(--accent-primary);
+  font-weight: 700;
+  margin-right: 0.5em;
+}
+.reveal .title-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.reveal .hero-title {
+  width: 100%;
+  max-width: 1400px;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 2.5em;
+  line-height: 1.04;
+  margin-bottom: 0.08em;
+  animation: slideInUp 0.85s ease-out both, glowPulse 6s ease-in-out 1s infinite;
+}
+.reveal .subtitle,
+.reveal .meta {
+  color: #5d6d7e;
+  font-size: 0.74em;
+}
+.reveal .subtitle {
+  max-width: 920px;
+  font-size: 0.98em;
+}
+.reveal .meta {
+  font-size: 0.74em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.reveal .accent-line {
+  width: 104px;
+  height: 2px;
+  background: var(--accent-primary);
+  margin: 14px auto 18px;
+}
+.reveal .panel,
+.reveal .glass-card,
+.reveal .info-card,
+.reveal .compare-col,
+.reveal .flow-node,
+.reveal .stat-item,
+.reveal .img-frame {
+  background: var(--paper-panel);
+  border: 1px solid var(--paper-border);
+  box-shadow: var(--paper-shadow);
+}
+.reveal .panel {
+  padding: 22px 24px;
+  border-radius: 4px;
+  border-top: 3px solid var(--accent-primary);
+  background: linear-gradient(180deg, rgba(192, 57, 43, 0.04) 0%, var(--paper-panel) 40%);
+}
+.reveal .glass-card {
+  padding: 32px 28px;
+  border-radius: 4px;
+  background: #fff;
+  border: 1px solid #e8e4df;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+}
+.reveal .glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #c41e3a;
+}
+.reveal .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--accent-primary);
+  color: #ffffff;
+  font-size: 0.66em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: none;
+}
+.reveal .tag-blue {
+  background: var(--accent-info);
+}
+.reveal .tag-green {
+  background: var(--accent-tertiary);
+}
+.reveal .tag-dark {
+  background: var(--accent-secondary);
+}
+.reveal .footer-note {
+  margin-top: auto;
+  padding-top: 16px;
+  color: var(--r-muted-color);
+  font-size: 0.7em;
+  font-style: italic;
+  opacity: 0.95;
+}
+.reveal .two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.reveal .stats-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.reveal .stat-item {
+  flex: 1 1 220px;
+  padding: 22px 18px;
+  text-align: center;
+  border-radius: 4px;
+  min-width: 220px;
+}
+.reveal .stat-number {
+  font-family: var(--r-heading-font);
+  font-size: 2.34em;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: 10px;
+}
+.reveal .stat-label {
+  color: #5d6d7e;
+  font-size: 0.74em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.reveal .timeline {
+  position: relative;
+  margin-top: 14px;
+  padding-left: 0;
+}
+.reveal .timeline::before {
+  content: "";
+  position: absolute;
+  left: 42px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: rgba(44, 62, 80, 0.22);
+}
+.reveal .timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  margin: 0 0 24px;
+}
+.reveal .timeline-marker {
+  position: relative;
+  z-index: 1;
+  min-width: 84px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(192, 57, 43, 0.28);
+  background: #fffaf7;
+  color: var(--accent-primary);
+  border-radius: 999px;
+  font-family: var(--r-heading-font);
+  font-size: 0.78em;
+  font-weight: 700;
+  padding: 8px 18px;
+  white-space: nowrap;
+}
+.reveal .timeline-content {
+  flex: 1;
+  padding: 6px 0 0;
+}
+.reveal .timeline-content h4,
+.reveal .timeline-content p {
+  margin-bottom: 0.28em;
+  font-size: 0.76em;
+}
+.reveal .timeline-content h4 {
+  font-size: 0.86em;
+}
+.reveal .timeline-content p {
+  font-size: 0.76em;
+  color: #5d6d7e;
+}
+.reveal .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+.reveal .info-card {
+  padding: 32px 28px;
+  border-radius: 4px;
+  animation: fadeInScale 0.65s ease-out both;
+}
+.reveal .icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  background: rgba(196,30,58,0.08);
+  color: #c41e3a;
+}
+.reveal .info-card h3,
+.reveal .compare-col h3,
+.reveal .panel h3,
+.reveal .glass-card h3 {
+  margin-top: 0;
+  color: #c0392b;
+}
+.reveal .compare-table {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 16px;
+}
+.reveal .compare-col {
+  padding: 22px 24px;
+  border-radius: 4px;
+  border-top: 3px solid var(--accent-info);
+}
+.reveal .compare-bad {
+  background: #fdf0ee;
+  border-color: rgba(192, 57, 43, 0.2);
+}
+.reveal .compare-good {
+  background: #eef8f1;
+  border-color: rgba(39, 174, 96, 0.22);
+}
+.reveal .flow-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.reveal .flow-node {
+  min-width: 150px;
+  padding: 16px 20px;
+  text-align: center;
+  border-radius: 4px;
+}
+.reveal .flow-arrow {
+  color: var(--accent-primary);
+  font-size: 1.1em;
+  font-weight: 700;
+}
+.reveal pre,
+.reveal .code-showcase pre {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(44, 62, 80, 0.12);
+  box-shadow: none;
+  background: #fcfcfa;
+}
+.reveal pre code,
+.reveal .code-showcase pre code {
+  display: block;
+  max-height: 480px;
+  padding: 1.2em 1.35em;
+  font-family: var(--r-code-font);
+  font-size: 0.7em;
+  line-height: 1.58;
+  color: #2c3e50;
+  background: #fcfcfa;
+  border-radius: 4px;
+}
+.reveal .img-frame {
+  padding: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.reveal .img-frame img,
+.reveal .img-frame svg,
+.reveal img {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  max-height: 520px;
+  height: auto;
+  object-fit: contain;
+}
+.reveal .quote-section {
+  display: flex;
+  align-items: center;
+  justify-content: center !important;
+}
+.reveal .quote-section blockquote,
+.reveal blockquote {
+  box-shadow: none;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 26px;
+}
+.reveal .end-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+.reveal .end-slide h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  font-size: 2.36em;
+}
+.reveal .end-slide p {
+  max-width: 760px;
+  text-align: center;
+}
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes glowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 0 rgba(192, 57, 43, 0);
+  }
+  50% {
+    text-shadow: 0 1px 0 rgba(192, 57, 43, 0.08);
+  }
+}
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.reveal .styled-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.82em;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--paper-shadow);
+}
+.reveal .styled-table thead th {
+  background: rgba(192, 57, 43, 0.08);
+  color: var(--r-heading-color);
+  font-weight: 700;
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid var(--accent-primary);
+}
+.reveal .styled-table tbody td {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--paper-border);
+  color: var(--r-body-color);
+}
+.reveal .styled-table tbody tr {
+  background: var(--paper-panel);
+  transition: background 0.2s;
+}
+.reveal .styled-table tbody tr:nth-child(even) {
+  background: rgba(244, 239, 230, 0.5);
+}
+.reveal .styled-table tbody tr:hover {
+  background: rgba(192, 57, 43, 0.06);
+}
+@media (max-width: 1200px) {
+  .reveal .two-col,
+  .reveal .card-grid,
+  .reveal .compare-table {
+    grid-template-columns: 1fr;
+  }
+  .reveal .flow-diagram {
+    flex-direction: column;
+  }
+  .reveal .flow-arrow {
+    transform: rotate(90deg);
+  }
+}
+.reveal .fade-up {
+  will-change: transform, opacity;
+}
+.reveal .code-showcase {
+  width: 100%;
+}
+.reveal pre code.language-js,
+.reveal pre code.language-xxx {
+  font-family: var(--r-code-font);
+}
+.reveal .progress {
+  height: 4px;
+  color: var(--accent-primary);
+  background: rgba(44, 62, 80, 0.08);
+}
+.reveal .progress span {
+  background: var(--accent-primary);
+}
+.reveal .fragment.highlight-current-blue.visible {
+  color: var(--accent-info);
+  background: rgba(41, 128, 185, 0.08);
+}
+
+/* ===== Navigation Sidebar ===== */
+.slide-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.slide-nav.open {
+  transform: translateX(0);
+}
+.slide-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.slide-nav-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  line-height: 1;
+}
+.slide-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0 20px;
+}
+.slide-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+  line-height: 1.4;
+  border-left: 3px solid transparent;
+}
+.slide-nav-num {
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.slide-nav-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.slide-nav-btn {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 199;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.slide-nav-btn:hover {
+  transform: scale(1.1);
+}
+  </style>
+</head>
+<body>
+  <!-- Slide Navigation (from components/navigation.md) — Use "Navigation" for English -->
+  <nav class="slide-nav" id="slideNav">
+    <div class="slide-nav-header">
+      <span>📑 导航</span><!-- English: 📑 Navigation -->
+      <button class="slide-nav-close" onclick="toggleSlideNav()">✕</button>
+    </div>
+    <ul class="slide-nav-list" id="slideNavList"></ul>
+  </nav>
+  <button class="slide-nav-btn" id="slideNavBtn" onclick="toggleSlideNav()" title="幻灯片导航">☰</button><!-- English: title="Slide Navigation" -->
+
+  <div class="reveal">
+    <div class="slides">
+<section class="title-slide" style="overflow:hidden;">
+  <h1 class="hero-title">Agent Skill 入门指南</h1>
+  <div class="accent-line"></div>
+  <p class="subtitle">让 AI 助手学会新技能</p>
+  <p class="meta">Speaker · 2025</p>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>核心价值</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="card-grid" style="grid-template-columns:repeat(2, minmax(0, 1fr));">
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+        <h3>可复用</h3>
+        <p>把成熟做法沉淀成固定能力，后续场景直接复用。</p>
+      </div>
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg></div>
+        <h3>自动触发</h3>
+        <p>写清描述与触发词后，模型会在合适时机主动调用。</p>
+      </div>
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <h3>组件化</h3>
+        <p>规则、模板、脚本与示例可以拆分维护、按需组合。</p>
+      </div>
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></div>
+        <h3>社区共享</h3>
+        <p>团队经验不再只留在聊天里，而能被持续传播与协作。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>什么是 Agent Skill？</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="two-col">
+      <div class="panel">
+        <h3>一句话定义</h3>
+        <p><strong>Skill 是给 AI 助手写的操作手册</strong></p>
+        <ul>
+          <li>告诉助手什么时候该出手</li>
+          <li>规定步骤、边界与输出格式</li>
+          <li>把经验从“会做”变成“稳定复现”</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <pre><code class="language-markdown" data-trim>
+---
+name: demo-skill
+description: 当用户要生成日报时触发
+---
+
+## Steps
+1. 收集输入
+2. 套用模板
+3. 输出结果
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>Skill vs 传统方式</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="compare-table">
+      <div class="compare-col compare-bad glass-card">
+        <h3>传统方式</h3>
+        <ul>
+          <li>每次重写 Prompt</li>
+          <li>需要编码 Plugin</li>
+          <li>静态配置文件</li>
+          <li>无法跨项目复用</li>
+        </ul>
+      </div>
+      <div class="compare-col compare-good glass-card">
+        <h3>Agent Skill</h3>
+        <ul>
+          <li>纯 Markdown 编写</li>
+          <li>自动场景匹配</li>
+          <li>上下文感知</li>
+          <li>Git 版本管理</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="code-showcase" style="overflow:hidden;">
+  <h2>Skill 文件结构</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="two-col">
+      <div class="panel">
+        <ul>
+          <li>SKILL.md 是唯一必需文件</li>
+          <li>Frontmatter 定义触发条件</li>
+          <li>正文描述操作流程</li>
+          <li>可附带脚本和模板</li>
+        </ul>
+      </div>
+      <div>
+        <pre><code class="language-markdown" data-trim>
+# my-skill
+- SKILL.md
+- templates/
+  - report-template.md
+- scripts/
+  - validate.py
+- examples/
+  - demo-input.json
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>创建流程</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div style="position:relative; width:90%; max-width:1100px; margin:0 auto;">
+      <div style="position:absolute; top:34px; left:8%; right:8%; height:4px; background:#f0f0f0; border-radius:2px; z-index:0;"></div>
+      <div style="position:absolute; top:34px; left:8%; right:8%; height:4px; background:linear-gradient(90deg,#c41e3a,#dc2626,#e74c3c,#f08080); border-radius:2px; opacity:0.5; z-index:0;"></div>
+      <div style="display:flex; justify-content:space-between; position:relative; z-index:1;">
+        <div style="text-align:center; flex:1;">
+          <div style="width:68px; height:68px; border-radius:50%; background:#c41e3a; display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#fff; box-shadow:0 4px 16px rgba(196,30,58,0.25);">1</div>
+          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:700; color:#1a1a1a; font-family:Georgia,serif;">确定场景</h4>
+          <p style="font-size:0.42em; color:#666; line-height:1.6; max-width:160px; margin:0 auto;">明确 Skill 要解决的具体问题和使用场景</p>
+        </div>
+        <div style="text-align:center; flex:1;">
+          <div style="width:68px; height:68px; border-radius:50%; background:#dc2626; display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#fff; box-shadow:0 4px 16px rgba(220,38,38,0.25);">2</div>
+          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:700; color:#1a1a1a; font-family:Georgia,serif;">编写 SKILL.md</h4>
+          <p style="font-size:0.42em; color:#666; line-height:1.6; max-width:160px; margin:0 auto;">定义触发词、工作流工具调用与输出格式</p>
+        </div>
+        <div style="text-align:center; flex:1;">
+          <div style="width:68px; height:68px; border-radius:50%; background:#e74c3c; display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#fff; box-shadow:0 4px 16px rgba(231,76,60,0.25);">3</div>
+          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:700; color:#1a1a1a; font-family:Georgia,serif;">测试验证</h4>
+          <p style="font-size:0.42em; color:#666; line-height:1.6; max-width:160px; margin:0 auto;">多场景触发测试优化描述与输出质量</p>
+        </div>
+        <div style="text-align:center; flex:1;">
+          <div style="width:68px; height:68px; border-radius:50%; background:#f08080; display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#fff; box-shadow:0 4px 16px rgba(240,128,128,0.25);">4</div>
+          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:700; color:#1a1a1a; font-family:Georgia,serif;">发布共享</h4>
+          <p style="font-size:0.42em; color:#666; line-height:1.6; max-width:160px; margin:0 auto;">推送到 GitHub 仓库供团队或社区安装使用</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">先让触发清晰，再让步骤稳定，最后再推广复用。</p>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>Skill 生态增长</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div id="chart-bar" style="width:100%; height:560px;"></div>
+    <p class="footer-note">示例数据 · 社区目录观察；工具类与报告类增长最快。</p>
+  </div>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>Skill 使用场景分布</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div id="chart-pie" style="width:100%; height:560px;"></div>
+    <p class="footer-note">示例数据 · 使用场景抽样；代码辅助仍是主力，文档与分析紧随其后。</p>
+  </div>
+</section>
+
+<section style="overflow:hidden;">
+  <h2>最佳实践速查</h2>
+  <p class="subtitle">写 Skill 前，先用这张表做一次快速自检。</p>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>维度</th>
+          <th>✅ 推荐做法</th>
+          <th>❌ 避免做法</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>命名</td>
+          <td>动词短语，如“生成周报”</td>
+          <td>只写名词，如“周报”</td>
+        </tr>
+        <tr>
+          <td>Description</td>
+          <td>写清触发条件与上下文</td>
+          <td>只写笼统功能名</td>
+        </tr>
+        <tr>
+          <td>篇幅</td>
+          <td>聚焦核心步骤，控制在 &lt;500 词</td>
+          <td>把所有内容都塞进一个文件</td>
+        </tr>
+        <tr>
+          <td>测试</td>
+          <td>先看无 Skill 表现，再比较增益</td>
+          <td>直接部署，不做基线验证</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="footer-note">把命名、触发、篇幅、测试四件事先做对，Skill 成功率会明显提高。</p>
+</section>
+
+<section class="end-slide" style="overflow:hidden;">
+  <h2>开始创建你的 Skill</h2>
+  <div class="accent-line"></div>
+  <p class="subtitle">— · —</p>
+</section>
+    </div>
+  </div>
+
+  <!-- reveal.js core -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.min.js"></script>
+  <!-- ECharts (only if charts are used) -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: 'slide',
+      plugins: [RevealHighlight],
+      width: 1920,
+      height: 1080,
+      margin: 0.04,
+      center: false, // keep false; CSS handles centering
+      slideNumber: 'c/t',        // current/total format
+      progress: true,             // progress bar at bottom
+      showNotes: false,           // speaker notes hidden by default; press 'S' to open speaker view
+    });
+
+    // Chart initialization (only if charts are used)
+    Reveal.on('slidechanged', event => {
+      (function () {
+            if (typeof echarts === 'undefined') return;
+            var palette = ["#c0392b", "#2980b9", "#27ae60", "#f39c12", "#8e44ad"];
+            var barEl = document.getElementById('chart-bar');
+            if (barEl) {
+              var barChart = echarts.getInstanceByDom(barEl) || echarts.init(barEl);
+              barChart.setOption({
+                color: palette,
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: '#ffffff', borderColor: 'rgba(44, 62, 80, 0.22)', textStyle: { color: '#2c3e50' } },
+                grid: { left: '8%', right: '5%', top: '14%', bottom: '14%', containLabel: true },
+                xAxis: { type: 'category', data: ["工具类", "报告类", "创作类", "调试类", "工程类", "自动化"], axisLine: { lineStyle: { color: '#2c3e50' } }, axisTick: { show: false }, axisLabel: { color: '#5d6d7e' } },
+                yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(44, 62, 80, 0.12)' } }, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: '#5d6d7e' } },
+                series: [{ name: 'Skill 数量', type: 'bar', data: [45, 32, 28, 22, 18, 15], barWidth: '46%', label: { show: true, position: 'top', color: '#2c3e50' }, itemStyle: { borderRadius: [10, 10, 0, 0], color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: palette[0] }, { offset: 1, color: palette[1] }]) }, emphasis: { focus: 'series' } }]
+              }, true);
+            }
+            var pieEl = document.getElementById('chart-pie');
+            if (pieEl) {
+              var pieChart = echarts.getInstanceByDom(pieEl) || echarts.init(pieEl);
+              pieChart.setOption({
+                color: palette,
+                tooltip: { trigger: 'item', backgroundColor: '#ffffff', borderColor: 'rgba(44, 62, 80, 0.22)', textStyle: { color: '#2c3e50' } },
+                legend: { bottom: '4%', left: 'center', textStyle: { color: '#5d6d7e' } },
+                title: { text: '35%', subtext: '代码辅助', left: 'center', top: '42%', textAlign: 'center', textStyle: { color: '#2c3e50', fontSize: 28, fontWeight: 700 }, subtextStyle: { color: '#5d6d7e' } },
+                series: [{ name: 'Skill 使用场景', type: 'pie', radius: ['45%', '70%'], center: ['50%', '42%'], avoidLabelOverlap: true, itemStyle: { borderRadius: 10, borderColor: '#fafaf8', borderWidth: 2 }, label: { color: '#2c3e50', formatter: '{b}\n{d}%' }, labelLine: { lineStyle: { color: '#2c3e50' } }, emphasis: { scale: true, scaleSize: 8, itemStyle: { shadowBlur: 18, shadowColor: 'rgba(0, 0, 0, 0.28)' } }, data: [{"value": 35, "name": "代码辅助"}, {"value": 25, "name": "文档生成"}, {"value": 20, "name": "数据分析"}, {"value": 12, "name": "自动化"}, {"value": 8, "name": "其他"}] }]
+              }, true);
+            }
+          })();
+    });
+    // Also init charts on ready for first slide
+    Reveal.on('ready', event => {
+      (function () {
+            if (typeof echarts === 'undefined') return;
+            var palette = ["#c0392b", "#2980b9", "#27ae60", "#f39c12", "#8e44ad"];
+            var barEl = document.getElementById('chart-bar');
+            if (barEl) {
+              var barChart = echarts.getInstanceByDom(barEl) || echarts.init(barEl);
+              barChart.setOption({
+                color: palette,
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, backgroundColor: '#ffffff', borderColor: 'rgba(44, 62, 80, 0.22)', textStyle: { color: '#2c3e50' } },
+                grid: { left: '8%', right: '5%', top: '14%', bottom: '14%', containLabel: true },
+                xAxis: { type: 'category', data: ["工具类", "报告类", "创作类", "调试类", "工程类", "自动化"], axisLine: { lineStyle: { color: '#2c3e50' } }, axisTick: { show: false }, axisLabel: { color: '#5d6d7e' } },
+                yAxis: { type: 'value', splitLine: { lineStyle: { color: 'rgba(44, 62, 80, 0.12)' } }, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { color: '#5d6d7e' } },
+                series: [{ name: 'Skill 数量', type: 'bar', data: [45, 32, 28, 22, 18, 15], barWidth: '46%', label: { show: true, position: 'top', color: '#2c3e50' }, itemStyle: { borderRadius: [10, 10, 0, 0], color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: palette[0] }, { offset: 1, color: palette[1] }]) }, emphasis: { focus: 'series' } }]
+              }, true);
+            }
+            var pieEl = document.getElementById('chart-pie');
+            if (pieEl) {
+              var pieChart = echarts.getInstanceByDom(pieEl) || echarts.init(pieEl);
+              pieChart.setOption({
+                color: palette,
+                tooltip: { trigger: 'item', backgroundColor: '#ffffff', borderColor: 'rgba(44, 62, 80, 0.22)', textStyle: { color: '#2c3e50' } },
+                legend: { bottom: '4%', left: 'center', textStyle: { color: '#5d6d7e' } },
+                title: { text: '35%', subtext: '代码辅助', left: 'center', top: '42%', textAlign: 'center', textStyle: { color: '#2c3e50', fontSize: 28, fontWeight: 700 }, subtextStyle: { color: '#5d6d7e' } },
+                series: [{ name: 'Skill 使用场景', type: 'pie', radius: ['45%', '70%'], center: ['50%', '42%'], avoidLabelOverlap: true, itemStyle: { borderRadius: 10, borderColor: '#fafaf8', borderWidth: 2 }, label: { color: '#2c3e50', formatter: '{b}\n{d}%' }, labelLine: { lineStyle: { color: '#2c3e50' } }, emphasis: { scale: true, scaleSize: 8, itemStyle: { shadowBlur: 18, shadowColor: 'rgba(0, 0, 0, 0.28)' } }, data: [{"value": 35, "name": "代码辅助"}, {"value": 25, "name": "文档生成"}, {"value": 20, "name": "数据分析"}, {"value": 12, "name": "自动化"}, {"value": 8, "name": "其他"}] }]
+              }, true);
+            }
+          })();
+    });
+    // Resize charts on window resize (only if charts are used)
+    window.addEventListener('resize', function() {
+      document.querySelectorAll('[id^="chart-"]').forEach(function(el) {
+        var instance = echarts.getInstanceByDom(el);
+        if (instance) instance.resize();
+      });
+    });
+
+/* ===== Navigation Sidebar Logic ===== */
+(function () {
+  // Auto-detect light vs dark theme
+  function isLightTheme() {
+    const el = document.querySelector('.reveal');
+    if (!el) return false;
+    const bg = getComputedStyle(el).backgroundColor;
+    const m = bg.match(/rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)/);
+    if (!m) return false;
+    return (parseInt(m[1]) * 299 + parseInt(m[2]) * 587 + parseInt(m[3]) * 114) / 1000 > 128;
+  }
+
+  function applyNavTheme() {
+    const light = isLightTheme();
+    const nav = document.getElementById('slideNav');
+    const btn = document.getElementById('slideNavBtn');
+    if (!nav) return;
+
+    if (light) {
+      nav.style.cssText += ';background:rgba(255,255,255,0.97);border-right:1px solid rgba(0,0,0,0.08);box-shadow:4px 0 24px rgba(0,0,0,0.08);color:#2c3e50;';
+      nav.querySelectorAll('.slide-nav-header span, .slide-nav-header').forEach(e => e.style.color = '#1a1a1a');
+      nav.querySelector('.slide-nav-close').style.color = '#95a5a6';
+      if (btn) btn.style.cssText += ';background:rgba(255,255,255,0.92);color:#2c3e50;border:1px solid rgba(0,0,0,0.1);box-shadow:0 4px 16px rgba(0,0,0,0.08);';
+      nav.dataset.theme = 'light';
+    } else {
+      nav.style.cssText += ';background:rgba(11,16,32,0.96);border-right:1px solid rgba(122,184,255,0.1);box-shadow:4px 0 24px rgba(0,0,0,0.3);color:#d7e0f2;';
+      nav.querySelectorAll('.slide-nav-header span, .slide-nav-header').forEach(e => e.style.color = '#f7f9ff');
+      nav.querySelector('.slide-nav-close').style.color = '#9fb3d9';
+      if (btn) btn.style.cssText += ';background:rgba(11,16,32,0.85);color:rgba(215,224,242,0.8);border:1px solid rgba(122,184,255,0.15);box-shadow:0 4px 16px rgba(0,0,0,0.25);';
+      nav.dataset.theme = 'dark';
+    }
+  }
+
+  function styleNavItem(item, active, light) {
+    if (active) {
+      item.style.cssText = light
+        ? 'background:rgba(192,57,43,0.08);color:#c0392b;border-left-color:#c0392b;font-weight:600;'
+        : 'background:rgba(102,126,234,0.15);color:#667eea;border-left-color:#667eea;font-weight:600;';
+      item.querySelector('.slide-nav-num').style.cssText = light
+        ? 'background:#c0392b;color:#fff;'
+        : 'background:#667eea;color:#fff;';
+    } else {
+      item.style.cssText = light
+        ? 'color:#5d6d7e;border-left-color:transparent;font-weight:400;'
+        : 'color:rgba(215,224,242,0.7);border-left-color:transparent;font-weight:400;';
+      item.querySelector('.slide-nav-num').style.cssText = light
+        ? 'background:rgba(0,0,0,0.06);color:#2c3e50;'
+        : 'background:rgba(255,255,255,0.06);color:#d7e0f2;';
+    }
+  }
+
+  function buildSlideNav() {
+    var slides = document.querySelectorAll('.reveal .slides > section');
+    var list = document.getElementById('slideNavList');
+    if (!list) return;
+    list.innerHTML = '';
+    slides.forEach(function (slide, i) {
+      var h = slide.querySelector('h1, h2, .hero-title');
+      var title = h ? h.textContent.trim() : 'Slide ' + (i + 1);
+      var li = document.createElement('li');
+      li.className = 'slide-nav-item';
+      li.dataset.index = i;
+      li.innerHTML = '<span class="slide-nav-num">' + (i + 1) + '</span><span class="slide-nav-title">' + title + '</span>';
+      li.addEventListener('click', function () {
+        Reveal.slide(i);
+        document.getElementById('slideNav').classList.remove('open');
+      });
+      list.appendChild(li);
+    });
+  }
+
+  function updateSlideNavActive() {
+    var idx = Reveal.getIndices().h;
+    var nav = document.getElementById('slideNav');
+    var light = nav && nav.dataset.theme === 'light';
+    document.querySelectorAll('.slide-nav-item').forEach(function (item) {
+      var isActive = parseInt(item.dataset.index) === idx;
+      item.classList.toggle('active', isActive);
+      styleNavItem(item, isActive, light);
+    });
+    var active = document.querySelector('.slide-nav-item.active');
+    if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  window.toggleSlideNav = function () {
+    document.getElementById('slideNav').classList.toggle('open');
+  };
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.getElementById('slideNav').classList.remove('open');
+    }
+  });
+
+  Reveal.on('ready', function () {
+    applyNavTheme();
+    buildSlideNav();
+    updateSlideNavActive();
+  });
+  Reveal.on('slidechanged', updateSlideNavActive);
+})();
+  </script>
+</body>
+</html>
