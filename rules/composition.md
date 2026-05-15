@@ -80,6 +80,7 @@ Apply these in order. Hard rules override preferences.
 
 - `stats-dashboard` must be followed by `bullet-points` or `two-column` so the audience gets interpretation, not just numbers.
 - `code-showcase` should be preceded or followed by `bullet-points` to explain why the snippet matters.
+- `terminal-demo` is a visually heavy "performance" slide — follow with `bullet-points`, `two-column`, or `full-image` to explain the result. Do not place adjacent to `code-showcase` without an interpretation bridge.
 - After **3-4 content-heavy slides**, insert a breathing slide: `quote-highlight`, `full-image`, or `stats-dashboard`.
 - Avoid more than **2 slides in a row** that share the same visual rhythm, even if the layout names differ. Example: `bullet-points` → `comparison` → `two-column` is acceptable, but `bullet-points` → `two-column` → `comparison` → `bullet-points` may still feel dense and needs a break.
 
@@ -100,6 +101,7 @@ Apply these in order. Hard rules override preferences.
 | `toc` | Any content layout | Only appears after title |
 | `section-divider` | Any content layout | Marks chapter start |
 | `table` | `bullet-points`, `two-column`, `quote-highlight` | Interpret the data |
+| `terminal-demo` | `bullet-points`, `two-column`, `full-image` | Explain result or impact |
 
 ## Content Density Rules
 
@@ -122,6 +124,7 @@ These are maximums, not targets. When in doubt, use less.
 | `toc` | 10 items max | Use 2-col for 4-6, 3-col for 7+ |
 | `section-divider` | Chapter number + title only | Pure transition, no body text |
 | `table` | 6 columns max; 8 rows max | Split larger tables into multiple slides |
+| `terminal-demo` | 1 command + 4 output lines max | Command under 50 chars; more output → use code-showcase |
 | `end-cta` | title + 1 line + optional 3 stats | Closing should feel decisive |
 
 ### Density Escalation Rule
@@ -394,5 +397,6 @@ These are common AI assembly failures. Avoid them deliberately.
 | `toc` | 10 items | 0 | `title-hero` only | Anywhere except after title |
 | `section-divider` | Number + title | 0 | Any content layout | `section-divider` |
 | `table` | 6 cols, 8 rows | 0 | `bullet-points`, `stats-dashboard` | `table` |
+| `terminal-demo` | 1 cmd + 4 output lines | 0 | `bullet-points`, `two-column` | `terminal-demo`, `code-showcase` |
 | `end-cta` | Title + 1 line + optional 3 stats | 0 | Any final content slide | Anything after it |
 

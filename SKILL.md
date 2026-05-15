@@ -1,6 +1,6 @@
 ---
 name: html-presentation
-description: "Generate beautiful HTML presentations using reveal.js for video recording. Supports creating from topics, converting documents (Markdown, PDF, Word, PPT) to slides, and modifying existing presentations. Trigger on \"生成演示文稿\", \"做PPT\", \"HTML演示\", \"HTML presentation\", \"generate slides\", \"create presentation\", \"make slides\", \"幻灯片\", \"做个演示\", \"录视频用的PPT\", \"文档转PPT\", \"修改PPT\", \"修改演示文稿\", \"加几页\", \"改一下PPT\". Also trigger when users provide PDF/Word/Markdown files and ask to present or visualize them."
+description: "Use when a user asks to create, generate, convert, or modify a reveal.js single-file HTML presentation for recording or live delivery. Triggers on \"做PPT\", \"生成演示文稿\", \"HTML presentation\", \"generate slides\", \"create presentation\", \"make slides\", \"幻灯片\", \"做个演示\", \"录视频用的PPT\", \"文档转PPT\", \"修改PPT\", \"修改演示文稿\", \"加几页\", \"改一下PPT\". Also triggers when users provide PDF/Word/Markdown files and ask to present or visualize them."
 ---
 
 # HTML Presentation Generator v2
@@ -141,7 +141,7 @@ After reading, perform a deep analysis of the material. This is not a 1:1 transl
 
 **This is a mandatory checkpoint.** Do NOT generate HTML until the user confirms the outline.
 
-Based on the deep analysis, produce a **structured outline** and present it to the user via `ask_user`. The outline must include:
+Based on the deep analysis, produce a **structured outline** and present it **in the assistant response** (not inside ask_user). The outline must include:
 
 1. **Content summary** (2-3 sentences): What this deck is about, who the audience is, what the takeaway should be.
 2. **Slide plan table**: For each slide, show:
@@ -178,7 +178,7 @@ Based on the deep analysis, produce a **structured outline** and present it to t
 - List/bullet slides should show **the first item by default** (not as a fragment); remaining items are fragments.
 - Consider layout variety: use 2×2 grids for 4 parallel items, not always 1×2 two-column.
 
-**After presenting the outline, ask the user to confirm.** Wait for their response before proceeding. If they request changes, revise the outline and re-confirm.
+**After presenting the outline, use `ask_user` to confirm** with a simple question like "这个大纲可以吗？需要调整什么？". Wait for their response before proceeding. If they request changes, revise the outline and re-confirm.
 
 Also confirm key unknowns (never ask more than 3 additional questions beyond the outline). Pick from:
 
@@ -335,13 +335,15 @@ Preserve existing content, images, chart IDs, and title-first/end-last ordering 
 
 ## File Reading
 
+See **Step 0** for full file reading workflow and supported formats. Quick reference:
+
 ```powershell
 python {SKILL_DIR}/scripts/read_file.py "path/to/file"
 ```
 
 Supported: `.md`, `.txt`, `.pdf`, `.docx`, `.doc`, `.pptx`, `.ppt`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.svg`
 
-For images needing base64, use `--output "path/to/output.json"`. If reader returns `install_cmd`, install and re-run. Classify images by role (architecture, screenshot, chart, photo, logo) and map using `rules/composition.md` → Image Placement Rules.
+For images needing base64, use `--output "path/to/output.json"`. If reader returns `install_cmd`, install and re-run.
 
 ## Reference Library
 

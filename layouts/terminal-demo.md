@@ -33,6 +33,7 @@ This layout creates a **cinematic terminal window** with typewriter typing effec
         <div class="terminal-line terminal-line--output terminal-line--d1"><!-- PLACEHOLDER: output line 1 --></div>
         <div class="terminal-line terminal-line--output terminal-line--d2"><!-- PLACEHOLDER: output line 2 --></div>
         <div class="terminal-line terminal-line--output terminal-line--d3"><!-- PLACEHOLDER: output line 3 --></div>
+        <!-- optional: <div class="terminal-line terminal-line--output terminal-line--d4">output line 4</div> -->
       </div>
     </div>
   </div>
@@ -185,6 +186,8 @@ For showing multiple commands typed in sequence.
   width: 0;
   white-space: nowrap;
   color: var(--accent-primary, #667eea);
+}
+.present .terminal-typing {
   animation: terminal-type 1.8s steps(var(--chars, 30), end) forwards;
 }
 .terminal-typing--delayed {
@@ -200,8 +203,10 @@ For showing multiple commands typed in sequence.
 .terminal-line--output {
   opacity: 0;
   transform: translateY(14px);
-  animation: terminal-output-reveal 0.5s ease-out forwards;
   padding-left: 24px;
+}
+.present .terminal-line--output {
+  animation: terminal-output-reveal 0.5s ease-out forwards;
 }
 .terminal-line--d1 { animation-delay: 2.1s; }
 .terminal-line--d2 { animation-delay: 2.6s; }
@@ -224,11 +229,15 @@ For showing multiple commands typed in sequence.
   border: 1px solid var(--glass-border, rgba(122,184,255,0.25));
   box-shadow: var(--glass-shadow, 0 18px 44px rgba(0,0,0,0.32));
   backdrop-filter: var(--glass-blur, blur(10px));
+  opacity: 0;
+  transform: translateY(28px);
+}
+.present .terminal-card {
   animation: terminal-card-rise 0.7s ease-out both;
 }
-.terminal-card:nth-child(1) { animation-delay: 0.4s; }
-.terminal-card:nth-child(2) { animation-delay: 0.56s; }
-.terminal-card:nth-child(3) { animation-delay: 0.72s; }
+.present .terminal-card:nth-child(1) { animation-delay: 0.4s; }
+.present .terminal-card:nth-child(2) { animation-delay: 0.56s; }
+.present .terminal-card:nth-child(3) { animation-delay: 0.72s; }
 .terminal-card-cmd {
   font-family: var(--r-code-font, monospace);
   font-size: 0.82em;
@@ -273,11 +282,12 @@ For showing multiple commands typed in sequence.
 - Do not use this layout on consecutive slides.
 - Side cards variant works best with exactly **3 related commands**.
 - All colors use CSS variable fallbacks, so the layout adapts to any theme automatically.
+- **Animation replay**: All animations are scoped to `.present`, so they replay correctly when navigating back and forward through slides.
 
 ## Counting Characters for --chars
 
 Count the **visible characters** in the command text (including spaces). Examples:
-- `npx skill-hub install weekly-report` → `--chars: 37`
+- `npx skill-hub install weekly-report` → `--chars: 35`
 - `npm run build` → `--chars: 13`
 - `docker compose up -d` → `--chars: 20`
 
@@ -298,7 +308,7 @@ Count the **visible characters** in the command text (including spaces). Example
         <div class="terminal-body">
           <div class="terminal-line terminal-line--cmd">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-typing" style="--chars: 37;">npx skill-hub install weekly-report</span>
+            <span class="terminal-typing" style="--chars: 35;">npx skill-hub install weekly-report</span>
             <span class="terminal-caret"></span>
           </div>
           <div class="terminal-line terminal-line--output terminal-line--d1">✓ Installing onenote-reader (dependency)</div>
