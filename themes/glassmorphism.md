@@ -1,6 +1,6 @@
-# Glassmorphism Theme / 科技玻璃态
+# Glassmorphism Theme
 
-Base: `night.min.css` | Highlight: `monokai.min.css` | Best for: 技术分享、架构设计、代码演示
+Base: `night.min.css` | Highlight: `monokai.min.css` | Best for: Tech talks, architecture design, code demos
 
 ## CDN Links
 - reveal.js core CSS: `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css`
@@ -654,4 +654,4 @@ const glassmorphismEChartsTheme = {
 - For side-by-side visuals, place two `.img-frame` blocks inside `.two-col`; for terminal or dashboard captures, keep captions muted with `.footer-note` to preserve the premium technical feel.
 
 ## Theme Auto-select Keywords
-科技玻璃态, glassmorphism, glass theme, frosted glass, cyber glass, 科技感, 高级暗色, 未来感, 架构设计, 技术分享, 代码演示, dashboard, metrics, 深色炫光
+glassmorphism, glass theme, frosted glass, cyber glass, tech aesthetic, dark premium, futuristic, architecture design, tech talks, code demos, dashboard, metrics, dark glow

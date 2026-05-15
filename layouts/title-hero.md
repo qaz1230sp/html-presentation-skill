@@ -1,4 +1,4 @@
-# Title Hero / 标题英雄页
+# Title Hero
 
 Fragment count: 0 | Best for: opening slides, keynote covers, and strong narrative hooks
 

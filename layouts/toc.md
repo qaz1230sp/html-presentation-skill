@@ -1,4 +1,4 @@
-# Table of Contents / 目录页
+# Table of Contents
 
 Fragment count: 0 | Best for: agenda overview, chapter navigation, deck structure preview
 

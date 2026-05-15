@@ -1,4 +1,4 @@
-# Comparison / 对比页
+# Comparison
 
 Fragment count: 1 | Best for: before/after, problem/solution, and old-way/new-way contrasts
 

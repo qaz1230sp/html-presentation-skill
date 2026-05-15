@@ -1,6 +1,6 @@
-# Editorial Theme / 杂志排版
+# Editorial Theme
 
-Base: `white.min.css` | Highlight: `stackoverflow-light.min.css` | Best for: 学术报告、行业分析、数据报告、研究分享
+Base: `white.min.css` | Highlight: `stackoverflow-light.min.css` | Best for: Academic reports, industry analysis, data reports, research sharing
 
 ## CDN Links
 - reveal.js core CSS: `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css`
@@ -738,4 +738,4 @@ const editorialEChartsTheme = {
 - In image-heavy layouts, use `.two-col` with one narrative column and one `.img-frame` column; reserve `.footer-note` for source lines, photo credits, or methodology notes.
 
 ## Theme Auto-select Keywords
-杂志排版, editorial, magazine style, report design, 学术报告, 行业分析, 数据报告, 研究分享, print layout, serif headings, clean white theme, annual report, insight deck, whitepaper, publication style
+editorial, magazine style, report design, academic report, industry analysis, data report, research sharing, print layout, serif headings, clean white theme, annual report, insight deck, whitepaper, publication style

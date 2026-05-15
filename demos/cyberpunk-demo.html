@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agent Skill 入门指南</title>
-  <!-- reveal.js core CSS -->
+  <title>Modern Web Development — Cyberpunk Theme</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css">
-  <!-- Theme CSS (from theme file's CDN Links) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.min.css">
-  <!-- Highlight.js theme (from theme file's CDN Links) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/dracula.min.css">
   <style>
-    :root {
+:root {
   --r-background-color: #0a0a0f;
   --r-main-font: "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
   --r-heading-font: "Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, monospace;
@@ -209,29 +206,12 @@
   border: 1px solid var(--cyber-card-border);
   box-shadow: var(--cyber-card-shadow);
 }
-.reveal .panel {
+.reveal .panel,
+.reveal .glass-card {
   border-radius: 10px;
   padding: 22px 24px;
   border-top: 3px solid #ff2a6d;
   background: linear-gradient(180deg, rgba(255, 42, 109, 0.06) 0%, rgba(8, 15, 18, 0.94) 42%, rgba(8, 15, 18, 0.94) 100%);
-}
-.reveal .glass-card {
-  border-radius: 10px;
-  padding: 32px 28px;
-  background: rgba(0,255,255,0.03);
-  border: 1px solid rgba(0,255,255,0.15);
-  box-shadow: 0 0 20px rgba(0,255,255,0.05), inset 0 1px 0 rgba(0,255,255,0.08);
-  position: relative;
-  overflow: hidden;
-}
-.reveal .glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, transparent);
 }
 .reveal .tag {
   display: inline-flex;
@@ -343,26 +323,12 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px;
-  max-width: 1100px;
-  margin: 0 auto;
   margin-top: 16px;
 }
 .reveal .info-card {
   border-radius: 10px;
-  padding: 32px 28px;
+  padding: 22px 22px 20px;
   animation: fadeInScale 0.7s ease-out both;
-}
-.reveal .icon-wrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-  background: rgba(0,255,255,0.08);
-  border: 1px solid rgba(0,255,255,0.2);
-  color: #00ffff;
 }
 .reveal .info-card h3,
 .reveal .compare-col h3,
@@ -373,6 +339,17 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+.reveal .icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  background: rgba(0, 255, 255, 0.12);
+  color: #00ffff;
 }
 .reveal .compare-table {
   display: grid;
@@ -588,8 +565,7 @@
   color: var(--accent-tertiary);
   text-shadow: 0 0 16px rgba(0, 212, 255, 0.34);
 }
-
-    /* ===== Navigation Sidebar ===== */
+/* ===== Navigation Sidebar ===== */
 .slide-nav {
   position: fixed;
   left: 0;
@@ -678,235 +654,429 @@
 .slide-nav-btn:hover {
   transform: scale(1.1);
 }
+/* ===== Terminal Demo Layout ===== */
+.terminal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) 340px;
+  gap: 28px;
+  align-items: stretch;
+}
+.terminal-window {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border, rgba(122,184,255,0.25));
+  box-shadow: var(--glass-shadow, 0 18px 44px rgba(0,0,0,0.32));
+  background: var(--glass-bg, rgba(18,28,52,0.58));
+  backdrop-filter: var(--glass-blur, blur(10px));
+  -webkit-backdrop-filter: var(--glass-blur, blur(10px));
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--glass-border, rgba(122,184,255,0.15));
+}
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-primary, #667eea);
+  background: rgba(102,126,234,0.18);
+  animation: terminal-dot-pulse 1.8s ease-in-out infinite;
+}
+.terminal-dot:nth-child(2) { animation-delay: 0.18s; }
+.terminal-dot:nth-child(3) { animation-delay: 0.36s; }
+.terminal-path {
+  margin-left: auto;
+  font-size: 0.62em;
+  letter-spacing: 0.1em;
+  color: var(--r-muted-color, #9fb3d9);
+  font-family: var(--r-code-font, monospace);
+}
+.terminal-body {
+  padding: 28px 30px 34px;
+  display: grid;
+  gap: 14px;
+  font-family: var(--r-code-font, monospace);
+  font-size: 0.76em;
+  color: var(--r-body-color, #d7e0f2);
+}
+.terminal-line { white-space: nowrap; }
+.terminal-line--cmd {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.terminal-prompt {
+  color: var(--r-muted-color, #9fb3d9);
+  flex-shrink: 0;
+}
+.terminal-typing {
+  overflow: hidden;
+  width: 0;
+  white-space: nowrap;
+  color: var(--accent-primary, #667eea);
+}
+.present .terminal-typing {
+  animation: terminal-type 1.8s steps(var(--chars, 30), end) forwards;
+}
+.present .terminal-typing--delayed {
+  animation-delay: 2.8s;
+}
+.terminal-caret {
+  width: 10px;
+  height: 1.15em;
+  flex-shrink: 0;
+  background: var(--accent-primary, #667eea);
+  animation: terminal-caret-blink 0.82s step-end infinite;
+}
+.terminal-line--output {
+  opacity: 0;
+  transform: translateY(14px);
+  padding-left: 24px;
+}
+.present .terminal-line--output {
+  animation-name: terminal-output-reveal;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+.present .terminal-line--d1 { animation-delay: 2.1s; }
+.present .terminal-line--d2 { animation-delay: 2.6s; }
+.present .terminal-line--d3 { animation-delay: 3.0s; }
+.present .terminal-line--d4 { animation-delay: 3.4s; }
+
+/* Side cards */
+.terminal-cards {
+  display: grid;
+  gap: 16px;
+  align-content: center;
+}
+.terminal-card {
+  padding: 20px 22px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--glass-bg, rgba(18,28,52,0.58));
+  border: 1px solid var(--glass-border, rgba(122,184,255,0.25));
+  box-shadow: var(--glass-shadow, 0 18px 44px rgba(0,0,0,0.32));
+  backdrop-filter: var(--glass-blur, blur(10px));
+  opacity: 0;
+  transform: translateY(28px);
+}
+.present .terminal-card {
+  animation: terminal-card-rise 0.7s ease-out both;
+}
+.present .terminal-card:nth-child(1) { animation-delay: 3.2s; }
+.present .terminal-card:nth-child(2) { animation-delay: 3.5s; }
+.present .terminal-card:nth-child(3) { animation-delay: 3.8s; }
+.terminal-card-cmd {
+  font-family: var(--r-code-font, monospace);
+  font-size: 0.82em;
+  color: var(--accent-primary, #667eea);
+  font-weight: 700;
+}
+.terminal-card-desc {
+  font-size: 0.7em;
+  color: var(--r-muted-color, #9fb3d9);
+}
+
+/* Keyframes */
+@keyframes terminal-type {
+  from { width: 0; }
+  to { width: calc(var(--chars, 30) * 1ch); }
+}
+@keyframes terminal-caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes terminal-output-reveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes terminal-card-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes terminal-dot-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@keyframes countUp {
+  from { --num: 0; }
+}
+.stat-number {
+  animation: countUp 1.5s ease-out forwards;
+  counter-reset: num var(--num);
+}
+.stat-number::after {
+  content: counter(num);
+}
+
   </style>
 </head>
 <body>
-  <!-- Slide Navigation (from components/navigation.md) — Use "Navigation" for English -->
   <nav class="slide-nav" id="slideNav">
     <div class="slide-nav-header">
-      <span>📑 导航</span><!-- English: 📑 Navigation -->
+      <span>📑 Navigation</span>
       <button class="slide-nav-close" onclick="toggleSlideNav()">✕</button>
     </div>
     <ul class="slide-nav-list" id="slideNavList"></ul>
   </nav>
-  <button class="slide-nav-btn" id="slideNavBtn" onclick="toggleSlideNav()" title="幻灯片导航">☰</button><!-- English: title="Slide Navigation" -->
+  <button class="slide-nav-btn" id="slideNavBtn" onclick="toggleSlideNav()" title="Slide Navigation">☰</button>
 
   <div class="reveal">
     <div class="slides">
-      <section class="title-slide" style="overflow:hidden;">
-  <h1 class="hero-title">Agent Skill 入门指南</h1>
+      <section class="title-slide" data-transition="slide" style="overflow:hidden;">
+  <h1 class="hero-title">Modern Web Development</h1>
   <div class="accent-line"></div>
-  <p class="subtitle">让 AI 助手学会新技能</p>
-  <p class="meta">Speaker · 2025</p>
+  <p class="subtitle">Building Scalable Applications with Best Practices</p>
+  <p class="meta">Engineering Playbook · 2026</p>
 </section>
-      <section style="overflow:hidden;">
-  <h2>核心价值</h2>
-  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-    <div class="card-grid" style="grid-template-columns:repeat(2, minmax(0, 1fr));">
-      <div class="info-card glass-card">
-        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
-        <h3>可复用</h3>
-        <p>把成熟做法沉淀成固定能力，后续场景直接复用。</p>
-      </div>
-      <div class="info-card glass-card">
-        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></svg></div>
-        <h3>自动触发</h3>
-        <p>写清描述与触发词后，模型会在合适时机主动调用。</p>
-      </div>
-      <div class="info-card glass-card">
-        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-        <h3>组件化</h3>
-        <p>规则、模板、脚本与示例可以拆分维护、按需组合。</p>
-      </div>
-      <div class="info-card glass-card">
-        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></div>
-        <h3>社区共享</h3>
-        <p>团队经验不再只留在聊天里，而能被持续传播与协作。</p>
-      </div>
-    </div>
+
+      <section data-transition="fade" style="overflow:hidden;">
+  <h2>Why Modern Tooling Matters</h2>
+  <div class="panel">
+    <ul>
+      <li>Automated pipelines keep releases predictable from commit to production.</li>
+      <li class="fragment fade-up">Typed contracts catch integration issues before they reach users.</li>
+      <li class="fragment fade-in">Shared component libraries reduce duplicate work across teams.</li>
+      <li class="fragment zoom-in">Fast feedback loops let developers iterate with confidence.</li>
+    </ul>
   </div>
+  <p class="footer-note">Modern teams move faster when the toolchain removes repetitive friction.</p>
 </section>
-      <section style="overflow:hidden;">
-  <h2>什么是 Agent Skill？</h2>
+
+      <section data-transition="zoom" style="overflow:hidden;">
+  <h2>Frontend vs Backend</h2>
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
     <div class="two-col">
       <div class="panel">
-        <h3>定义</h3>
-        <p>Agent Skill 是给 AI 助手准备的可复用能力包。</p>
+        <h3>Frontend Stack</h3>
         <ul>
-          <li>用 Markdown 描述场景、规则与执行步骤</li>
-          <li>通过描述自动匹配，而不是每次重新写长 Prompt</li>
-          <li>可以封装模板、脚本、图表、文档读取等工作流</li>
+          <li>React or Vue for component-driven interfaces.</li>
+          <li>TypeScript for safer refactoring and clearer contracts.</li>
+          <li>Vite, testing libraries, and design systems for fast iteration.</li>
         </ul>
-        <blockquote>把经验写成技能，而不是留在一次次对话里。</blockquote>
       </div>
-      <div class="panel">
-        <pre><code class="language-md" data-trim>
----
-name: agent-skill
-description: "把经验封装成可触发能力"
----
-## Triggers
-- 生成周报
-- 读取 OneNote
-
-## Steps
-1. 识别场景
-2. 调用组件
-3. 输出结果
-        </code></pre>
+      <div class="panel fragment fade-up">
+        <h3>Backend Stack</h3>
+        <ul>
+          <li>Node.js with Express or NestJS for service composition.</li>
+          <li>REST or GraphQL APIs with shared validation schemas.</li>
+          <li>PostgreSQL, Redis, and queues for resilient data workflows.</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
-      <section style="overflow:hidden;">
-  <h2>Skill vs 传统方式</h2>
+
+      <section data-transition="convex" style="overflow:hidden;">
+  <h2>Performance Metrics</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:4px; margin-bottom:10px;">
+          <div class="stat-number" style="--num:99;"></div>
+          <div style="font-size:1.02em; font-weight:700; line-height:1.1;">.9%</div>
+        </div>
+        <div class="stat-label">Uptime</div>
+      </div>
+      <div class="stat-item">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:4px; margin-bottom:10px;">
+          <div style="font-size:1.02em; font-weight:700; line-height:1.1;">&lt;</div>
+          <div class="stat-number" style="--num:200;"></div>
+          <div style="font-size:1.02em; font-weight:700; line-height:1.1;">ms</div>
+        </div>
+        <div class="stat-label">P95 Latency</div>
+      </div>
+      <div class="stat-item">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:4px; margin-bottom:10px;">
+          <div class="stat-number" style="--num:10;"></div>
+          <div style="font-size:1.02em; font-weight:700; line-height:1.1;">K+</div>
+        </div>
+        <div class="stat-label">Concurrent Users</div>
+      </div>
+      <div class="stat-item">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:4px; margin-bottom:10px;">
+          <div class="stat-number" style="--num:4;"></div>
+          <div style="font-size:1.02em; font-weight:700; line-height:1.1;">.8</div>
+        </div>
+        <div class="stat-label">User Rating</div>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">Snapshot from a mature production stack with observability, caching, and automated recovery.</p>
+</section>
+
+      <section data-transition="slide" style="overflow:hidden;">
+  <h2>Core Technologies</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="card-grid">
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="20" height="14" rx="2"></rect><path d="M10 23h8"></path><path d="M14 19v4"></path></svg></div>
+        <h3>React / Vue</h3>
+        <p>Composable UI patterns, routing, and state models that scale from prototypes to platforms.</p>
+      </div>
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="16" height="8" rx="2"></rect><rect x="6" y="16" width="16" height="8" rx="2"></rect><path d="M10 8h.01M10 20h.01M14 8h4M14 20h4"></path></svg></div>
+        <h3>Node.js / Express</h3>
+        <p>Lean APIs, middleware ecosystems, and background jobs that keep product teams shipping quickly.</p>
+      </div>
+      <div class="info-card glass-card">
+        <div class="icon-wrap"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="14" cy="7" rx="8" ry="3"></ellipse><path d="M6 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"></path><path d="M6 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path></svg></div>
+        <h3>PostgreSQL / Redis</h3>
+        <p>Reliable persistence plus fast caching for transactional systems, sessions, and real-time data flows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section data-transition="fade" style="overflow:hidden;">
+  <h2>Quick Start</h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="terminal-layout">
+      <div class="terminal-window">
+        <div class="terminal-bar">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-path">~/workspace</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line terminal-line--cmd">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-typing" style="--chars: 47;">npx create-app my-project --template typescript</span>
+            <span class="terminal-caret"></span>
+          </div>
+          <div class="terminal-line terminal-line--output terminal-line--d1">✔ Scaffolding a TypeScript-ready workspace</div>
+          <div class="terminal-line terminal-line--output terminal-line--d2">✔ Installing React, routing, and linting defaults</div>
+          <div class="terminal-line terminal-line--output terminal-line--d3">Done. Run npm install &amp;&amp; npm run dev</div>
+        </div>
+      </div>
+      <div class="terminal-cards">
+        <div class="terminal-card">
+          <div class="terminal-card-cmd">npm install</div>
+          <div class="terminal-card-desc">Resolve packages and lock the baseline environment.</div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-card-cmd">npm run dev</div>
+          <div class="terminal-card-desc">Start the local server with fast refresh for UI work.</div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-card-cmd">npm run test</div>
+          <div class="terminal-card-desc">Validate the starter before adding product-specific code.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">A shared starter keeps new services aligned on tooling, scripts, and quality gates.</p>
+</section>
+
+      <section data-transition="zoom" style="overflow:hidden;">
+  <h2>Development Roadmap</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker">Q1</div>
+      <div class="timeline-content">
+        <h4>Foundation</h4>
+        <p>Align design tokens, lint rules, and CI templates across repositories.</p>
+      </div>
+    </div>
+    <div class="timeline-item fragment fade-up">
+      <div class="timeline-marker">Q2</div>
+      <div class="timeline-content">
+        <h4>Platform APIs</h4>
+        <p>Ship typed service contracts, auth middleware, and observability defaults.</p>
+      </div>
+    </div>
+    <div class="timeline-item fragment fade-in">
+      <div class="timeline-marker">Q3</div>
+      <div class="timeline-content">
+        <h4>Developer Experience</h4>
+        <p>Automate previews, release notes, and performance regression checks.</p>
+      </div>
+    </div>
+    <div class="timeline-item fragment zoom-in">
+      <div class="timeline-marker">Q4</div>
+      <div class="timeline-content">
+        <h4>Scale</h4>
+        <p>Expand multi-region delivery, self-service analytics, and resilience drills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section data-transition="none" style="overflow:hidden;">
+  <h2>Before vs After</h2>
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
     <div class="compare-table">
       <div class="compare-col compare-bad glass-card">
-        <h3>传统方式</h3>
+        <h3>Old Approach</h3>
         <ul>
-          <li>每次重写 Prompt</li>
-          <li>需要编码 Plugin</li>
-          <li>静态配置文件</li>
+          <li>Manual setup for every new project.</li>
+          <li>Inconsistent scripts, linting, and deployment steps.</li>
+          <li>Late discovery of integration issues across teams.</li>
         </ul>
       </div>
-      <div class="compare-col compare-good glass-card">
-        <h3>Agent Skill</h3>
+      <div class="compare-col compare-good glass-card fragment fade-up">
+        <h3>Modern Approach</h3>
         <ul>
-          <li>纯 Markdown</li>
-          <li>自动匹配</li>
-          <li>上下文感知</li>
+          <li>Reusable starters with tested defaults.</li>
+          <li>Typed interfaces and shared automation from day one.</li>
+          <li>Continuous feedback through CI, previews, and monitoring.</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
-      <section class="code-showcase" style="overflow:hidden;">
-  <h2>Skill 文件结构</h2>
+
+      <section class="code-showcase" data-transition="convex" style="overflow:hidden;">
+  <h2>Configuration</h2>
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
     <div class="two-col">
-      <div class="panel">
+      <div>
         <ul>
-          <li>前置 metadata 决定名称、触发范围与能力定位</li>
-          <li>Overview 说明用途，帮助助手快速选对技能</li>
-          <li>Workflow 约束步骤，让输出更稳定、更可复现</li>
-          <li>Reference 与 Checklist 保证组件复用与质量校验</li>
+          <li>Keep runtime settings typed and close to the entry point.</li>
+          <li>Make defaults explicit so every environment behaves predictably.</li>
+          <li>Short config objects are easier to audit and extend safely.</li>
         </ul>
       </div>
       <div>
-        <pre><code class="language-md" data-trim>
----
-name: html-presentation
-description: "把主题与模板组装成 HTML 演示"
----
-## Overview
-## Workflow
-## Reference Library
-## Quality Checklist
-        </code></pre>
+        <pre><code class="language-ts" data-trim>type AppConfig = {
+  apiBaseUrl: string;
+  enableCache: boolean;
+  logLevel: &#x27;info&#x27; | &#x27;debug&#x27;;
+};
+
+export const config: AppConfig = {
+  apiBaseUrl: &#x27;/api&#x27;,
+  enableCache: true,
+  logLevel: &#x27;info&#x27;,
+};</code></pre>
       </div>
     </div>
   </div>
 </section>
-      <section style="overflow:hidden;">
-  <h2>创建流程</h2>
-  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-    <div style="position:relative; width:90%; max-width:1100px; margin:0 auto;">
-      <div style="position:absolute; top:34px; left:8%; right:8%; height:4px; background:rgba(255,255,255,0.04); border-radius:2px; z-index:0;"></div>
-      <div style="position:absolute; top:34px; left:8%; right:8%; height:4px; background:linear-gradient(90deg,#00ffff,#ff00ff,#00ff88,#ffcc00); border-radius:2px; opacity:0.5; z-index:0;"></div>
-      <div style="display:flex; justify-content:space-between; position:relative; z-index:1;">
-        <div style="text-align:center; flex:1;">
-          <div style="width:68px; height:68px; border-radius:50%; background:rgba(0,255,255,0.08); border:2px solid rgba(0,255,255,0.6); display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#00ffff; box-shadow:0 0 28px rgba(0,255,255,0.3);">1</div>
-          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:600; color:#00ffff;">确定场景</h4>
-          <p style="font-size:0.42em; color:#8899aa; line-height:1.6; max-width:160px; margin:0 auto;">明确 Skill 要解决的具体问题和使用场景</p>
-        </div>
-        <div style="text-align:center; flex:1;">
-          <div style="width:68px; height:68px; border-radius:50%; background:rgba(255,0,255,0.08); border:2px solid rgba(255,0,255,0.6); display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#ff00ff; box-shadow:0 0 28px rgba(255,0,255,0.3);">2</div>
-          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:600; color:#ff00ff;">编写 SKILL.md</h4>
-          <p style="font-size:0.42em; color:#8899aa; line-height:1.6; max-width:160px; margin:0 auto;">定义触发词、工作流工具调用与输出格式</p>
-        </div>
-        <div style="text-align:center; flex:1;">
-          <div style="width:68px; height:68px; border-radius:50%; background:rgba(0,255,136,0.08); border:2px solid rgba(0,255,136,0.6); display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#00ff88; box-shadow:0 0 28px rgba(0,255,136,0.3);">3</div>
-          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:600; color:#00ff88;">测试验证</h4>
-          <p style="font-size:0.42em; color:#8899aa; line-height:1.6; max-width:160px; margin:0 auto;">多场景触发测试优化描述与输出质量</p>
-        </div>
-        <div style="text-align:center; flex:1;">
-          <div style="width:68px; height:68px; border-radius:50%; background:rgba(255,204,0,0.08); border:2px solid rgba(255,204,0,0.6); display:flex; align-items:center; justify-content:center; margin:0 auto; font-size:1.6rem; font-weight:800; color:#ffcc00; box-shadow:0 0 28px rgba(255,204,0,0.3);">4</div>
-          <h4 style="margin:14px 0 6px; font-size:0.72em; font-weight:600; color:#ffcc00;">发布共享</h4>
-          <p style="font-size:0.42em; color:#8899aa; line-height:1.6; max-width:160px; margin:0 auto;">推送到 GitHub 仓库供团队或社区安装使用</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <p class="footer-note">从真实场景出发，先做可用版本，再通过验证不断打磨触发与输出质量。</p>
-</section>
-      <section style="overflow:hidden;">
-  <h2>Skill 生态增长</h2>
-  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-    <div id="chart-bar-cyberpunk" style="width:100%; height:560px;"></div>
-    <p class="footer-note">示例数据 · 工具类领先，报告类与创作类持续增长，生态正向多场景扩展。</p>
-  </div>
-</section>
-      <section style="overflow:hidden;">
-  <h2>Skill 使用分布</h2>
-  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-    <div id="chart-pie-cyberpunk" style="width:100%; height:560px;"></div>
-    <p class="footer-note">示例数据 · 代码辅助仍是主力入口，但文档、分析与自动化需求正在形成稳定第二曲线。</p>
-  </div>
-</section>
-      <section style="overflow:hidden;">
-  <h2>最佳实践</h2>
-  <p class="subtitle">让 Skill 更易触发、更好维护、更容易复用</p>
-  <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>维度</th>
-          <th>✅ 推荐</th>
-          <th>❌ 避免</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>命名</td>
-          <td>短、准、可搜索，如 weekly-report</td>
-          <td>模糊抽象，如 helper123</td>
-        </tr>
-        <tr>
-          <td>描述</td>
-          <td>明确场景、输入与触发词</td>
-          <td>只写“处理任务”之类空泛描述</td>
-        </tr>
-        <tr>
-          <td>长度</td>
-          <td>结构清晰，分节表达规则与步骤</td>
-          <td>所有要求堆成一大段长文</td>
-        </tr>
-        <tr>
-          <td>测试</td>
-          <td>用真实样例反复验证触发与输出</td>
-          <td>写完即发布，从不回看效果</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="footer-note">经验越可验证，Skill 越容易长期沉淀成团队资产。</p>
-</section>
-      <section class="end-slide" style="overflow:hidden;">
-  <h2>开始创建你的 Skill</h2>
+
+      <section class="end-slide" data-transition="slide" style="overflow:hidden;">
+  <h2>Get Started Today</h2>
   <div class="accent-line"></div>
-  <p class="subtitle">— · —</p>
+  <p class="subtitle">hello@modernweb.dev · github.com/modernweb · Start your pilot this week</p>
 </section>
+
     </div>
   </div>
 
-  <!-- reveal.js core -->
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.min.js"></script>
-  <!-- ECharts (only if charts are used) -->
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-
   <script>
     Reveal.initialize({
       hash: true,
@@ -915,134 +1085,12 @@ description: "把主题与模板组装成 HTML 演示"
       width: 1920,
       height: 1080,
       margin: 0.04,
-      center: false, // keep false; CSS handles centering
-      slideNumber: 'c/t',        // current/total format
-      progress: true,             // progress bar at bottom
-      showNotes: false,           // speaker notes hidden by default; press 'S' to open speaker view
+      center: false,
+      slideNumber: 'c/t',
+      progress: true,
+      showNotes: false,
     });
-
-function initThemeCharts() {
-      var charts = [
-        {
-          id: 'chart-bar-cyberpunk',
-          option: {
-  color: ['#00ff88', '#ff0066', '#00d4ff', '#ffaa00', '#a855f7'],
-  tooltip: {
-    trigger: 'axis',
-    axisPointer: { type: 'shadow' },
-    backgroundColor: 'rgba(7, 10, 14, 0.95)',
-    borderColor: 'rgba(0, 255, 136, 0.42)',
-    textStyle: { color: '#e0e0e0' }
-  },
-  grid: { left: '8%', right: '5%', top: '14%', bottom: '14%', containLabel: true },
-  xAxis: {
-    type: 'category',
-    data: ['工具类', '报告类', '创作类', '调试类', '工程类', '自动化'],
-    axisLine: { lineStyle: { color: 'rgba(0,255,136,0.35)' } },
-    axisTick: { show: false },
-    axisLabel: { color: '#cfd7d7' }
-  },
-  yAxis: {
-    type: 'value',
-    splitLine: { lineStyle: { color: 'rgba(0,212,255,0.12)' } },
-    axisLine: { show: false },
-    axisTick: { show: false },
-    axisLabel: { color: '#cfd7d7' }
-  },
-  series: [{
-    name: 'Skill 数量',
-    type: 'bar',
-    data: [45, 32, 28, 22, 18, 15],
-    barWidth: '46%',
-    label: { show: true, position: 'top', color: '#e0e0e0' },
-    itemStyle: {
-      borderRadius: [10, 10, 0, 0],
-      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#00ff88' },
-        { offset: 1, color: '#ffaa00' }
-      ])
-    },
-    emphasis: { focus: 'series' }
-  }]
-}
-        },
-        {
-          id: 'chart-pie-cyberpunk',
-          option: {
-  color: ['#00ff88', '#ff0066', '#00d4ff', '#ffaa00', '#a855f7'],
-  tooltip: {
-    trigger: 'item',
-    backgroundColor: 'rgba(7, 10, 14, 0.95)',
-    borderColor: 'rgba(0, 255, 136, 0.42)',
-    textStyle: { color: '#e0e0e0' }
-  },
-  legend: {
-    bottom: '4%',
-    left: 'center',
-    textStyle: { color: '#cfd7d7' }
-  },
-  title: {
-    text: '35%',
-    subtext: '代码辅助',
-    left: 'center',
-    top: '42%',
-    textAlign: 'center',
-    textStyle: { color: '#e0e0e0', fontSize: 28, fontWeight: 700 },
-    subtextStyle: { color: '#cfd7d7' }
-  },
-  series: [{
-    name: 'Skill 使用分布',
-    type: 'pie',
-    radius: ['40%', '70%'],
-    center: ['50%', '42%'],
-    avoidLabelOverlap: true,
-    itemStyle: {
-      borderRadius: 10,
-      borderColor: '#0a0a0f',
-      borderWidth: 2
-    },
-    label: { color: '#e0e0e0', formatter: '{b}\n{d}%' },
-    labelLine: { lineStyle: { color: 'rgba(0,255,136,0.35)' } },
-    emphasis: {
-      scale: true,
-      scaleSize: 8,
-      itemStyle: { shadowBlur: 18, shadowColor: 'rgba(0, 0, 0, 0.28)' }
-    },
-    data: [
-      { value: 35, name: '代码辅助' },
-      { value: 25, name: '文档生成' },
-      { value: 20, name: '数据分析' },
-      { value: 12, name: '自动化' },
-      { value: 8, name: '其他' }
-    ]
-  }]
-}
-        }
-      ];
-      charts.forEach(function(item) {
-        var el = document.getElementById(item.id);
-        if (!el || el.offsetWidth === 0 || el.offsetHeight === 0) return;
-        var existing = echarts.getInstanceByDom(el);
-        if (existing) existing.dispose();
-        var chart = echarts.init(el, null, { renderer: 'canvas' });
-        chart.setOption(item.option);
-      });
-    }
-
-    Reveal.on('slidechanged', function() {
-      window.requestAnimationFrame(initThemeCharts);
-    });
-    Reveal.on('ready', function() {
-      window.requestAnimationFrame(initThemeCharts);
-    });
-    window.addEventListener('resize', function() {
-      document.querySelectorAll('[id^="chart-"]').forEach(function(el) {
-        var instance = echarts.getInstanceByDom(el);
-        if (instance) instance.resize();
-      });
-    });
-
-    /* ===== Navigation Sidebar Logic ===== */
+/* ===== Navigation Sidebar Logic ===== */
 (function () {
   // Auto-detect light vs dark theme
   function isLightTheme() {

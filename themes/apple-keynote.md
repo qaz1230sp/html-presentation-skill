@@ -1,6 +1,6 @@
-# Apple Keynote Theme / 苹果简约
+# Apple Keynote Theme
 
-Base: `white.min.css` | Highlight: `github.min.css` | Best for: 产品发布、商业汇报、用户体验分享
+Base: `white.min.css` | Highlight: `github.min.css` | Best for: Product launches, business reports, UX sharing
 
 ## CDN Links
 - reveal.js core CSS: `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css`
@@ -651,4 +651,4 @@ const appleKeynoteEChartsTheme = {
 - For product comparisons, place two `.img-frame` blocks inside `.two-col`; for hero visuals, keep captions minimal with `.footer-note` to preserve the keynote-style restraint.
 
 ## Theme Auto-select Keywords
-苹果简约, apple keynote, apple style, keynote, clean white, 极简发布会, 产品发布, 商业汇报, 用户体验, UX 分享, 极简卡片, 大量留白, 蓝色点缀, keynote 风格
+apple keynote, apple style, keynote, clean white, minimal launch, product release, business report, user experience, UX sharing, minimal cards, whitespace, blue accents, keynote style

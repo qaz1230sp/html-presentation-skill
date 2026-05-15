@@ -1,6 +1,6 @@
-# Luxury Minimal Theme / 奢华极简
+# Luxury Minimal Theme
 
-Base: `black.min.css` | Highlight: `atom-one-dark.min.css` | Best for: 高端产品、品牌展示、CEO汇报、投资路演
+Base: `black.min.css` | Highlight: `atom-one-dark.min.css` | Best for: Premium products, brand showcases, executive reports, investor pitches
 
 ## CDN Links
 - reveal.js core CSS: `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css`
@@ -664,6 +664,6 @@ const luxuryMinimalEChartsTheme = {
 - For side-by-side visuals, use two `.img-frame` blocks inside `.two-col`; keep captions minimal with `.footer-note` so the slide still feels premium, calm, and uncluttered.
 
 ## Theme Auto-select Keywords
-奢华极简, luxury minimal, 极简黑金, black gold, luxe dark, premium minimal, 高端汇报, 品牌展示, CEO 汇报, 投资路演, 年度总结, 董事会汇报, 高端产品发布, executive presentation, luxury brand
+luxury minimal, black gold, luxe dark, premium minimal, executive report, brand showcase, CEO presentation, investor pitch, annual summary, board report, premium product launch, executive presentation, luxury brand
 
 

@@ -1,4 +1,4 @@
-# Timeline / 时间线页
+# Timeline
 
 Fragment count: max 3 | Best for: roadmaps, phased rollouts, and milestone storytelling
 

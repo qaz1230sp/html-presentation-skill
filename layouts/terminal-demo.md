@@ -1,4 +1,4 @@
-# Terminal Demo / 终端演示页
+# Terminal Demo
 
 Fragment count: 0 | Best for: CLI commands, install workflows, code execution demos, terminal interactions
 
@@ -238,9 +238,9 @@ For showing multiple commands typed in sequence.
 .present .terminal-card {
   animation: terminal-card-rise 0.7s ease-out both;
 }
-.present .terminal-card:nth-child(1) { animation-delay: 0.4s; }
-.present .terminal-card:nth-child(2) { animation-delay: 0.56s; }
-.present .terminal-card:nth-child(3) { animation-delay: 0.72s; }
+.present .terminal-card:nth-child(1) { animation-delay: 3.2s; }
+.present .terminal-card:nth-child(2) { animation-delay: 3.5s; }
+.present .terminal-card:nth-child(3) { animation-delay: 3.8s; }
 .terminal-card-cmd {
   font-family: var(--r-code-font, monospace);
   font-size: 0.82em;
@@ -284,6 +284,7 @@ For showing multiple commands typed in sequence.
 - This layout counts as a "performance animation" per `rules/animation.md`.
 - Do not use this layout on consecutive slides.
 - Side cards variant works best with exactly **3 related commands**.
+- **Side card timing**: Cards must appear AFTER terminal output completes. Default delays: cards at 3.2s / 3.5s / 3.8s (output finishes around 3.0s). Never set card delays below 3.0s — they must not appear before the command result.
 - All colors use CSS variable fallbacks, so the layout adapts to any theme automatically.
 - **Animation replay**: All animations are scoped to `.present`, so they replay correctly when navigating back and forward through slides.
 
@@ -298,7 +299,7 @@ Count the **visible characters** in the command text (including spaces). Example
 
 ```html
 <section style="overflow:hidden;">
-  <h2>命令行统一入口</h2>
+  <h2>CLI Unified Entry Point</h2>
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
     <div class="terminal-layout">
       <div class="terminal-window">
@@ -322,15 +323,15 @@ Count the **visible characters** in the command text (including spaces). Example
       <div class="terminal-cards">
         <div class="terminal-card">
           <div class="terminal-card-cmd">install-agent &lt;name&gt;</div>
-          <div class="terminal-card-desc">安装 Custom Agent</div>
+          <div class="terminal-card-desc">Install a Custom Agent</div>
         </div>
         <div class="terminal-card">
           <div class="terminal-card-cmd">update --all</div>
-          <div class="terminal-card-desc">全量更新现有能力</div>
+          <div class="terminal-card-desc">Batch update all installed skills</div>
         </div>
         <div class="terminal-card">
           <div class="terminal-card-cmd">list</div>
-          <div class="terminal-card-desc">查看当前已安装列表</div>
+          <div class="terminal-card-desc">View all installed items</div>
         </div>
       </div>
     </div>

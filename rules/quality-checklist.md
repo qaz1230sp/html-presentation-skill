@@ -45,3 +45,5 @@ Run this checklist before saving any presentation.
 - [ ] 8+ slide deck has at least 1 inline SVG or CSS visual demo
 - [ ] Per-slide `data-transition` has at least 2 different settings across the deck
 - [ ] Fragment type matches information relationship (progressive → fade-up, contrast → fade-left/right)
+- [ ] Only hiding fragments (`fade-in`, `fade-up`, `fade-left`, `fade-right`, `zoom-in`) used to reveal new content — never `highlight-current-blue` or `shrink`
+- [ ] Terminal side cards appear AFTER output lines (delay ≥ 3.2s, not 0.4s)

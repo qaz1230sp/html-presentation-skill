@@ -1,4 +1,4 @@
-# Flowchart / 流程图页 (Design C — Progress Track)
+# Flowchart (Design C — Progress Track)
 
 Fragment count: 0 | Best for: process workflows, step-by-step guides, linear pipelines
 

@@ -1,4 +1,4 @@
-# Pie Chart / 饼图
+# Pie Chart
 
 Best for: composition, share-of-total stories, portfolio mix, and highlighting one dominant segment at a glance
 

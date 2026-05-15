@@ -1,4 +1,4 @@
-# Gauge Chart / 仪表盘
+# Gauge Chart
 
 Best for: single KPI progress, target attainment, readiness scores, SLA status, and compact executive health indicators
 

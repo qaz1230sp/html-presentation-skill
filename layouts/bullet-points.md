@@ -1,4 +1,4 @@
-# Bullet Points / 要点列表页
+# Bullet Points
 
 Fragment count: max 3 | Best for: sequential talking points, agenda items, and concise takeaways
 

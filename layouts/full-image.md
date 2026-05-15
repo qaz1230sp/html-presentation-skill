@@ -1,4 +1,4 @@
-# Full Image / 全图展示页
+# Full Image
 
 Fragment count: 0 | Best for: screenshots, architecture diagrams, and visual proof slides
 

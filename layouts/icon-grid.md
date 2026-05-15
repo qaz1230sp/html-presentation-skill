@@ -1,4 +1,4 @@
-# Icon Grid / 图标网格页
+# Icon Grid
 
 Fragment count: 0 | Best for: feature highlights, technology stacks, and capability overviews — lighter than card-grid
 
@@ -112,38 +112,38 @@ The icon grid is content-light, so wrap the grid body in a `flex:1` centered div
 
 ```html
 <section style="overflow:hidden;">
-  <h2>技术栈</h2>
+  <h2>Tech Stack</h2>
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
     <div class="card-grid">
       <div style="text-align:center; padding:20px;">
         <div style="font-size:2.4em; margin-bottom:12px;">🐍</div>
         <h3 style="margin:0 0 8px;">Python</h3>
-        <p style="font-size:0.85em; opacity:0.8;">核心引擎</p>
+        <p style="font-size:0.85em; opacity:0.8;">Core Engine</p>
       </div>
       <div style="text-align:center; padding:20px;">
         <div style="font-size:2.4em; margin-bottom:12px;">⚛️</div>
         <h3 style="margin:0 0 8px;">React</h3>
-        <p style="font-size:0.85em; opacity:0.8;">前端界面</p>
+        <p style="font-size:0.85em; opacity:0.8;">Frontend UI</p>
       </div>
       <div style="text-align:center; padding:20px;">
         <div style="font-size:2.4em; margin-bottom:12px;">🗄️</div>
         <h3 style="margin:0 0 8px;">PostgreSQL</h3>
-        <p style="font-size:0.85em; opacity:0.8;">数据存储</p>
+        <p style="font-size:0.85em; opacity:0.8;">Data Storage</p>
       </div>
       <div style="text-align:center; padding:20px;">
         <div style="font-size:2.4em; margin-bottom:12px;">🐳</div>
         <h3 style="margin:0 0 8px;">Docker</h3>
-        <p style="font-size:0.85em; opacity:0.8;">容器部署</p>
+        <p style="font-size:0.85em; opacity:0.8;">Container Deployment</p>
       </div>
       <div style="text-align:center; padding:20px;">
         <div style="font-size:2.4em; margin-bottom:12px;">☁️</div>
         <h3 style="margin:0 0 8px;">Azure</h3>
-        <p style="font-size:0.85em; opacity:0.8;">云服务</p>
+        <p style="font-size:0.85em; opacity:0.8;">Cloud Services</p>
       </div>
       <div style="text-align:center; padding:20px;">
         <div style="font-size:2.4em; margin-bottom:12px;">🤖</div>
         <h3 style="margin:0 0 8px;">OpenAI</h3>
-        <p style="font-size:0.85em; opacity:0.8;">AI 能力</p>
+        <p style="font-size:0.85em; opacity:0.8;">AI Capabilities</p>
       </div>
     </div>
   </div>

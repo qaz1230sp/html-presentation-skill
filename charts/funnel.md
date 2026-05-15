@@ -1,4 +1,4 @@
-# Funnel Chart / 漏斗图
+# Funnel Chart
 
 Best for: conversion pipelines, sales funnels, process dropoff visualization, and staged progression analysis
 

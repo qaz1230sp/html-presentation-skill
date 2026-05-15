@@ -1,4 +1,4 @@
-# Two Column / 双栏布局页
+# Two Column
 
 Fragment count: 1 | Best for: comparisons, text-plus-visual explanations, and before/after storytelling
 

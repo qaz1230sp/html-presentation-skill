@@ -168,44 +168,44 @@ Save the outline as `outline.md` in the project directory **before** asking the 
 **Example outline format (for outline.md):**
 
 ```markdown
-# AI 驱动的团队效率提升 — 演示大纲
+# AI-Driven Team Efficiency — Presentation Outline
 
-## 内容概要
-介绍 AI 驱动的团队效率提升方案，面向技术管理层，核心结论是...
+## Content Summary
+Introducing AI-driven team efficiency solutions, targeting tech leadership, with the core conclusion being...
 
-## 幻灯片计划
+## Slide Plan
 
-| # | 布局 | 标题 | 要点 | 动画 |
-|---|------|------|------|------|
-| 1 | title-hero | AI 驱动的团队效率提升 | 主标题 + 副标题 + 署名 | fade |
-| 2 | bullet-points | 团队面临的挑战 | 知识分散 / 重复工作 / Onboarding 断层 | 首项可见 |
-| 3 | two-column | 两大核心平台 | 左: LLM Wiki / 右: Skill Hub | 左右对向入场 |
+| # | Layout | Title | Key Points | Animation |
+|---|--------|-------|------------|-----------|
+| 1 | title-hero | AI-Driven Team Efficiency | Main title + subtitle + author | fade |
+| 2 | bullet-points | Challenges We Face | Knowledge silos / Repetitive work / Onboarding gaps | first-item-visible |
+| 3 | two-column | Two Core Platforms | Left: LLM Wiki / Right: Skill Hub | opposing slide-in |
 | ... | ... | ... | ... | ... |
 
-## 主题
-Glassmorphism（技术分享最佳）
+## Theme
+Glassmorphism (best for tech talks)
 
-## 统计
-- 页数：11
-- 预计时长：8-10 分钟
+## Stats
+- Slides: 11
+- Estimated duration: 8-10 min
 ```
 
 **Outline quality rules:**
 
 - Each slide must have a clear, distinct message — no "filler" slides.
 - Content must be **restructured for presentation logic**, not copied in document order.
-- Related but scattered sections should be **consolidated** (e.g., merge "架构特点" into "Skill Hub" slide instead of giving it a separate page).
+- Related but scattered sections should be **consolidated** (e.g., merge "Architecture Features" into the "Skill Hub" slide instead of giving it a separate page).
 - Short standalone content (a single quote, a one-line concept) should be **woven into adjacent slides** rather than given a dedicated page, unless it serves as a deliberate breathing slide.
 - List/bullet slides should show **the first item by default** (not as a fragment); remaining items are fragments.
 - Consider layout variety: use 2×2 grids for 4 parallel items, not always 1×2 two-column.
 
-**After presenting the outline, use `ask_user` to confirm** with a simple question like "这个大纲可以吗？需要调整什么？". Wait for their response before proceeding. If they request changes, revise the outline and re-confirm.
+**After presenting the outline, use `ask_user` to confirm** with a simple question like "Does this outline look good? Any changes needed?". Wait for their response before proceeding. If they request changes, revise the outline and re-confirm.
 
 Also confirm key unknowns (never ask more than 3 additional questions beyond the outline). Pick from:
 
-1. **Language / 语言**: Skip if obvious from content or config `default_language`.
+1. **Language**: Skip if obvious from content or config `default_language`.
 2. **Theme**: Skip if specified. Choices: Glassmorphism, Apple Keynote, Cyberpunk, Gradient Story, Editorial, Luxury Minimal.
-3. **Author / 署名**: Use config `author` as default. Skip if already known.
+3. **Author**: Use config `author` as default. Skip if already known.
 4. **Special pages**: Q&A, TOC — only ask if unclear.
 
 **Skip rules:** Don't re-ask answered questions. For document conversions, infer language from source content.

@@ -1,4 +1,4 @@
-# Bar Chart / 柱状图
+# Bar Chart
 
 Best for: rankings, comparisons across categories, KPI snapshots, and before/after performance summaries
 

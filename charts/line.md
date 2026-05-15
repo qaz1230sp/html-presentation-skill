@@ -1,4 +1,4 @@
-# Line Chart / 折线图
+# Line Chart
 
 Best for: trends over time, cumulative growth, progress tracking, and highlighting acceleration or seasonality
 

@@ -1,6 +1,6 @@
-# Cyberpunk Theme / 赛博朋克
+# Cyberpunk Theme
 
-Base: `black.min.css` | Highlight: `dracula.min.css` | Best for: 前沿技术、黑客文化、安全主题、AI/ML
+Base: `black.min.css` | Highlight: `dracula.min.css` | Best for: Cutting-edge tech, hacker culture, security topics, AI/ML
 
 ## CDN Links
 - reveal.js core CSS: `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css`
@@ -686,4 +686,4 @@ const cyberpunkEChartsTheme = {
 - For side-by-side visuals, place two `.img-frame` blocks inside `.two-col`; for console screenshots, add a muted `.footer-note` caption to reinforce the operator-console feel.
 
 ## Theme Auto-select Keywords
-赛博朋克, cyberpunk, neon hacker, matrix style, terminal style, 黑客风, 安全主题, 蓝绿霓虹, AI 安全, 红蓝对抗, SOC, threat intel, 零信任, machine learning ops, futuristic dark
+cyberpunk, neon hacker, matrix style, terminal style, hacker aesthetic, security topics, cyan-green neon, AI security, red-blue team, SOC, threat intel, zero trust, machine learning ops, futuristic dark

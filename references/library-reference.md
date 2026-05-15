@@ -6,12 +6,12 @@ Available themes (read the corresponding file for full CSS):
 
 | Theme | File | Best For |
 |-------|------|----------|
-| Glassmorphism / 科技玻璃态 | `themes/glassmorphism.md` | 技术分享、架构设计 |
-| Apple Keynote / 苹果简约 | `themes/apple-keynote.md` | 产品发布、商业汇报 |
-| Cyberpunk / 赛博朋克 | `themes/cyberpunk.md` | AI/ML、安全主题 |
-| Gradient Story / 渐变叙事 | `themes/gradient-story.md` | 博客、学习分享 |
-| Editorial / 杂志排版 | `themes/editorial.md` | 学术报告、数据分析 |
-| Luxury Minimal / 奢华极简 | `themes/luxury-minimal.md` | CEO汇报、投资路演 |
+| Glassmorphism | `themes/glassmorphism.md` | Tech talks, architecture design |
+| Apple Keynote | `themes/apple-keynote.md` | Product launches, business reports |
+| Cyberpunk | `themes/cyberpunk.md` | AI/ML, security topics |
+| Gradient Story | `themes/gradient-story.md` | Blog posts, learning shares |
+| Editorial | `themes/editorial.md` | Academic reports, data analysis |
+| Luxury Minimal | `themes/luxury-minimal.md` | Executive reports, investor pitches |
 
 ## Layout Reference
 

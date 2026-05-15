@@ -1,4 +1,4 @@
-# Card Grid / 卡片网格页
+# Card Grid
 
 Fragment count: 0 | Best for: feature sets, parallel concepts, and quick multi-item scanning
 

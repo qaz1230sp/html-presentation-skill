@@ -1,6 +1,6 @@
-# Gradient Story Theme / 渐变叙事
+# Gradient Story Theme
 
-Base: `moon.min.css` | Highlight: `monokai.min.css` | Best for: 技术博客、学习分享、项目总结、开源项目介绍
+Base: `moon.min.css` | Highlight: `monokai.min.css` | Best for: Tech blogs, learning shares, project summaries, open-source introductions
 
 ## CDN Links
 - reveal.js core CSS: `https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css`
@@ -672,4 +672,4 @@ const gradientStoryEChartsTheme = {
 - For comparisons or walkthroughs, place two `.img-frame` blocks inside `.two-col`; use `.footer-note` for captions so the visual hierarchy stays clean and understated.
 
 ## Theme Auto-select Keywords
-渐变叙事, gradient story, gradient card, storytelling dark, 深蓝渐变, 技术博客, 学习分享, 项目总结, 开源介绍, 迁移指南, 时间线, 教程演示, colorful tags, async guide, 项目复盘, 深色教程
+gradient story, gradient card, storytelling dark, deep blue gradient, tech blog, learning shares, project summary, open-source intro, migration guide, timeline, tutorial demo, colorful tags, async guide, project retrospective, dark tutorial

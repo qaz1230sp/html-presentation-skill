@@ -1,4 +1,4 @@
-# Treemap / 矩形树图
+# Treemap
 
 Best for: hierarchical data, budget allocation, category breakdown, nested proportions, and portfolio composition
 

@@ -1,4 +1,4 @@
-# Code Showcase / 代码演示页
+# Code Showcase
 
 Fragment count: 0 | Best for: code explanations, API snippets, and implementation walkthroughs
 

@@ -1,76 +1,89 @@
-# Animation & Visual Dynamics / 动画与视觉动效规则
+# Animation & Visual Dynamics
 
 This file governs how animations, fragments, and visual effects are applied. Read it after `composition.md` and before writing HTML. Its purpose: make presentations feel alive, cinematic, and anti-generic — not like a default PowerPoint or AI-generated artifact.
 
-## Core Philosophy: 演的不是动画，是信息
+## Core Philosophy: Animate Information, Not Decoration
 
-动画的存在意义不是"让页面动起来"，而是**帮观众理解信息的结构和关系**。每一个动效都应该回答一个问题：**这个动画让观众更容易理解了什么？**
+The purpose of animation is not to "make things move" — it's to **help the audience understand the structure and relationships of information**. Every animation should answer one question: **What does this animation help the audience understand better?**
 
-如果答案是"什么都没有，只是好看"——删掉它。
-
----
-
-## 三大原则
-
-### 原则 1: 内容决定动画，不是动画装饰内容
-
-| 信息关系 | 推荐动效 | 错误做法 |
-|----------|----------|----------|
-| 递进/顺序 | 从左到右依次滑入，或从下往上逐级抬升 | 全部同时 fade-in |
-| 对比/冲突 | 两侧同时从对向入场，或一侧先出、另一侧反向覆盖 | 两边都 fade-in |
-| 因果/转化 | A 先出现 → 连接线/箭头绘制 → B 出现 | A 和 B 一起 fade-in |
-| 强调/高亮 | scale pulse、背景色闪烁、边框亮起 | 加粗加下划线 |
-| 聚合/归纳 | 散落元素向中心聚拢，或列表项收缩为一个总结 | 直接切到总结页 |
-| 时间线/流程 | 节点沿轨道依次点亮，连线逐段绘制 | 所有节点同时出现 |
-
-### 原则 2: 相邻 slides 的主导动画必须不同
-
-连续三页使用同一种入场方式（如全部 fade-up）= 视觉疲劳。**相邻页的主导过渡效果必须有变化**。
-
-变化维度（任选其一即可）：
-- 方向不同（左入 → 下入 → 右入）
-- 类型不同（滑动 → 缩放 → 渐显 → 翻转）
-- 节奏不同（快闪入 → 慢浮现）
-
-### 原则 3: 每套 PPT 至少有一处"表演性动画"
-
-所谓"表演性动画"是指不只是让元素出现/消失，而是**用动画本身在讲解一个概念**：
-- 数字从 0 滚动到目标值
-- 进度条从空到满
-- 流程图节点依次点亮并连线
-- 代码逐行高亮（打字机效果）
-- 对比数据用天平/杠杆可视化
-
-这类动画至少出现 **1 次**。8 页以上的 deck 建议 **2-3 次**。
+If the answer is "nothing, it just looks cool" — remove it.
 
 ---
 
-## Fragment 进阶用法（reveal.js 原生能力）
+## Three Principles
 
-基础的 `class="fragment"` 只是 fade-in。reveal.js 支持以下变体，**必须混合使用**：
+### Principle 1: Content Drives Animation, Not the Other Way Around
 
-| Fragment 类型 | CSS class | 适用场景 |
-|--------------|-----------|----------|
-| 渐显 | `fragment fade-in` | 通用补充信息 |
-| 上浮渐显 | `fragment fade-up` | 列表递进 |
-| 左滑入 | `fragment fade-left` | 对比中的右列 |
-| 右滑入 | `fragment fade-right` | 对比中的左列 |
-| 缩放弹入 | `fragment zoom-in` | 强调核心数据 |
-| 先隐后显（配合退场） | `fragment fade-in-then-semi-out` | 逐步聚焦，前项灰化 |
-| 高亮 | `fragment highlight-current-blue` | 当前讨论项 |
-| 缩小退场 | `fragment shrink` | 被替代的旧方案 |
+| Information Relationship | Recommended Effect | Anti-Pattern |
+|--------------------------|-------------------|-------------|
+| Progressive / Sequential | Slide in left-to-right, or rise bottom-to-top in sequence | All items fade-in simultaneously |
+| Contrast / Conflict | Both sides enter from opposing directions, or one appears first then the other overrides | Both sides fade-in identically |
+| Cause / Effect | A appears → connector / arrow draws → B appears | A and B fade-in together |
+| Emphasis / Highlight | Scale pulse, background flash, border glow | Bold + underline |
+| Aggregation / Summary | Scattered elements converge to center, or list items collapse into a summary | Jump straight to summary slide |
+| Timeline / Process | Nodes light up along a track, connectors draw segment by segment | All nodes appear at once |
 
-**规则：同一页内如果有 2+ fragments，至少使用 2 种不同类型。**
+### Principle 2: Adjacent Slides Must Have Different Dominant Animations
 
-**首项可见规则：列表/卡片/双栏等有多个条目的 slide，第一个条目必须在页面进入时直接可见（不加 fragment class）。只有第 2 项起才用 fragment。** 这保证页面进入时不是空白的——观众一眼就能看到主题内容。
+Three consecutive slides using the same entrance style (e.g., all fade-up) = visual fatigue. **Adjacent slides must vary their dominant transition effect.**
+
+Variation dimensions (pick at least one):
+- Direction change (enter-left → enter-bottom → enter-right)
+- Type change (slide → zoom → fade → flip)
+- Tempo change (quick flash-in → slow float-in)
+
+### Principle 3: Every Deck Must Have At Least One "Performance Animation"
+
+A "performance animation" goes beyond simple appear/disappear — it **uses the animation itself to explain a concept**:
+- Numbers rolling from 0 to target value
+- Progress bar filling from empty to full
+- Flowchart nodes lighting up and connecting in sequence
+- Code lines highlighting with typewriter effect
+- Comparison data visualized as a tilting scale/lever
+
+Minimum **1** per deck. For 8+ slide decks, aim for **2-3**.
 
 ---
 
-## 自定义 CSS 动画工具箱
+## Advanced Fragment Usage (reveal.js Native)
 
-以下动画可以直接在 `<style>` 中定义。用 `data-fragment-index` 配合 `.visible` 状态触发：
+The basic `class="fragment"` is just fade-in. reveal.js supports these variants — **you must mix them**:
 
-### 数字滚动（Counter Roll）
+### Hiding Fragments (element starts invisible, appears on trigger)
+
+These are the **primary** fragment types for revealing content step-by-step:
+
+| Fragment Type | CSS Class | Best For |
+|---------------|-----------|----------|
+| Fade in | `fragment fade-in` | General supplementary info |
+| Float up | `fragment fade-up` | Progressive list items |
+| Slide from left | `fragment fade-left` | Right column in comparisons |
+| Slide from right | `fragment fade-right` | Left column in comparisons |
+| Zoom in | `fragment zoom-in` | Emphasizing key data |
+
+### Non-hiding Fragments (element is already visible, appearance changes on trigger)
+
+⚠️ **These do NOT hide the element initially.** Only use them on content that is already visible and you want to visually modify:
+
+| Fragment Type | CSS Class | Behavior | Use Case |
+|---------------|-----------|----------|----------|
+| Highlight current | `fragment highlight-current-blue` | Adds blue tint to already-visible text | Walking through a visible list, highlighting the current item |
+| Fade in then semi-out | `fragment fade-in-then-semi-out` | Fades in, then goes semi-transparent when next fragment triggers | Sequential focus where previous items should dim |
+| Shrink out | `fragment shrink` | Shrinks the element | Deprecated / replaced option being visually de-emphasized |
+
+**CRITICAL: Never use non-hiding fragments (`highlight-current-blue`, `shrink`) to reveal new content — the element will be visible from the start, breaking the reveal sequence.** Use `fade-in-then-semi-out` only when you intentionally want the dim-on-next behavior and understand the visual implications.
+
+**Rule: When a slide has 2+ fragments, use at least 2 different hiding fragment types.**
+
+**First-item-visible rule: For slides with multiple items (lists, cards, two-column), the first item must be visible on slide entry (no fragment class). Only item 2+ gets fragment classes.** This ensures the slide is never blank on entry — the audience immediately sees the topic content.
+
+---
+
+## Custom CSS Animation Toolbox
+
+These animations can be defined directly in `<style>`. Trigger them with `data-fragment-index` and `.visible` state:
+
+### Counter Roll
 ```css
 @keyframes countUp {
   from { --num: 0; }
@@ -86,7 +99,7 @@ This file governs how animations, fragments, and visual effects are applied. Rea
 }
 ```
 
-### 描边绘制（Stroke Draw）
+### Stroke Draw
 ```css
 @keyframes drawLine {
   to { stroke-dashoffset: 0; }
@@ -102,7 +115,7 @@ This file governs how animations, fragments, and visual effects are applied. Rea
 }
 ```
 
-### 进度条填充（Bar Fill）
+### Bar Fill
 ```css
 @keyframes fillBar {
   from { width: 0; }
@@ -117,9 +130,9 @@ This file governs how animations, fragments, and visual effects are applied. Rea
 }
 ```
 
-### 打字机效果（Typewriter）
+### Typewriter
 
-基础内联打字效果，适合单行文字强调：
+Basic inline typewriter effect for single-line text emphasis:
 
 ```css
 @keyframes typing {
@@ -143,23 +156,23 @@ This file governs how animations, fragments, and visual effects are applied. Rea
 }
 ```
 
-#### 终端打字机（Terminal Typewriter）
+#### Terminal Typewriter
 
-当内容是 CLI 命令或终端交互时，使用完整终端组件而非简单打字效果。
-完整的终端窗口模板、CSS 和使用规则见 `layouts/terminal-demo.md`。
+When the content is a CLI command or terminal interaction, use the full terminal component instead of the simple typewriter effect.
+Complete terminal window templates, CSS, and usage rules are in `layouts/terminal-demo.md`.
 
-核心技术组合：
-1. **终端外壳** — 圆角窗口 + 三色圆点装饰条（macOS 风格）
-2. **逐字输入** — `width: 0 → Nch`，`steps(N, end)` 精确匹配字符数
-3. **块状光标** — `background` 色块 + `step-end` 闪烁（比 `border-right` 更像真实终端）
-4. **输出逐行浮现** — `opacity: 0; translateY(14px)` + 递增 `animation-delay`
-5. **侧边命令卡** — 从下方滑入，展示相关命令
+Core techniques:
+1. **Terminal chrome** — Rounded window + three-dot bar (macOS style)
+2. **Character-by-character typing** — `width: 0 → Nch`, `steps(N, end)` matched to exact character count
+3. **Block caret** — `background` color block + `step-end` blink (more realistic than `border-right`)
+4. **Staggered output reveal** — `opacity: 0; translateY(14px)` + incremental `animation-delay`
+5. **Side command cards** — Slide up from below, showing related commands
 
-何时使用终端布局 vs 内联打字效果：
-- **终端布局**：完整命令 + 执行结果场景（安装、部署、构建）
-- **内联打字**：标题或关键词的单行强调效果
+When to use terminal layout vs inline typewriter:
+- **Terminal layout**: Full command + execution result scenarios (install, deploy, build)
+- **Inline typewriter**: Single-line emphasis for titles or keywords
 
-### 脉冲强调（Pulse Highlight）
+### Pulse Highlight
 ```css
 @keyframes pulse {
   0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 var(--accent-primary, rgba(102,126,234,0.4)); }
@@ -172,88 +185,88 @@ This file governs how animations, fragments, and visual effects are applied. Rea
 
 ---
 
-## Slide Transition 多样化
+## Slide Transition Variety
 
-reveal.js 支持 per-slide transition override。**禁止全 deck 使用同一种 transition。**
+reveal.js supports per-slide transition overrides. **Using the same transition for the entire deck is prohibited.**
 
 ```html
-<!-- 在需要变化的 section 上设置 -->
-<section data-transition="zoom">      <!-- 强调：重要结论 -->
-<section data-transition="convex">    <!-- 空间感：架构图 -->
-<section data-transition="fade">      <!-- 平静：引言/引用 -->
-<section data-transition="slide">     <!-- 默认：叙述推进 -->
-<section data-transition="none">      <!-- 紧凑：代码前后对比 -->
+<!-- Set on specific sections that need variation -->
+<section data-transition="zoom">      <!-- Emphasis: key conclusions -->
+<section data-transition="convex">    <!-- Spatial: architecture diagrams -->
+<section data-transition="fade">      <!-- Calm: quotes / citations -->
+<section data-transition="slide">     <!-- Default: narrative progression -->
+<section data-transition="none">      <!-- Tight: code before/after comparisons -->
 ```
 
-### 使用规则
+### Usage Rules
 
-- 默认使用 config 设定的 transition（通常 `slide`）
-- **强调页**（结论、金句、关键数据）：用 `zoom` 或 `convex` 突出
-- **呼吸页**（引用、全图）：用 `fade` 柔和过渡
-- **对比页**（before/after 紧挨）：用 `none` 消除过渡感
-- 同一种非默认 transition 不得连续出现超过 2 次
-
----
-
-## 反模式清单（Anti-Patterns）
-
-以下是 AI 生成演示文稿的常见视觉指纹，**全部禁止**：
-
-### 动画层面
-| ❌ 禁止 | ✅ 替代方案 |
-|---------|------------|
-| 全场所有元素都用 fade-in | 根据信息关系选动画类型 |
-| 所有 fragment 用相同的 `fade-up` | 混合 2+ 种 fragment 类型 |
-| 装饰性的持续呼吸/脉冲动画（无功能意义） | 只在需要吸引注意力时短暂脉冲 |
-| transition 全 deck 一个设置 | 关键页用不同 transition 制造节奏 |
-| 动画时间全用 0.5s / 1s 整数 | 用 0.3s / 0.7s / 1.2s 等非整数制造自然感 |
-
-### 视觉层面
-| ❌ 禁止 | ✅ 替代方案 |
-|---------|------------|
-| 紫粉/蓝紫对角渐变做背景（AI 味极重） | 使用主题定义的背景 |
-| 每页都有装饰性圆角卡片 + 彩色左边框 | 只在 card-grid 布局用卡片；边框用主题 accent |
-| emoji 做图标 | 用 inline SVG 或无图标纯文字 |
-| 渐变色按钮 + 大圆角药丸 | 扁平按钮或 ghost 按钮 |
-| 所有页面用同一个装饰元素（如右上角圆点） | 装饰随布局变化，或去掉装饰 |
-| 假数据、假 Logo、假"XX 万用户" | 用 placeholder 注明"待替换"或用真实数据 |
+- Default to the config-specified transition (usually `slide`)
+- **Emphasis slides** (conclusions, key quotes, critical data): use `zoom` or `convex`
+- **Breathing slides** (quotes, full images): use `fade` for soft transitions
+- **Comparison slides** (before/after side by side): use `none` to eliminate transition gap
+- The same non-default transition must not appear more than 2 times consecutively
 
 ---
 
-## SVG 与视觉演示（每 5 页建议出现 1 次）
+## Anti-Pattern Checklist
 
-对于 8+ 页的 deck，纯文字 + 图表容易单调。建议每 5 页插入一处**内联 SVG 或 CSS 视觉演示**：
+These are common visual fingerprints of AI-generated presentations — **all prohibited**:
 
-### 适用场景
+### Animation Anti-Patterns
+| ❌ Prohibited | ✅ Alternative |
+|--------------|---------------|
+| All elements use fade-in throughout | Choose animation type based on information relationship |
+| All fragments use the same `fade-up` | Mix 2+ fragment types |
+| Decorative perpetual breathing/pulse animations (no functional purpose) | Only pulse briefly when attention is needed |
+| Same transition for the entire deck | Use different transitions on key slides for rhythm |
+| All animation durations are round numbers (0.5s / 1s) | Use non-round values (0.3s / 0.7s / 1.2s) for natural feel |
 
-| 内容类型 | 推荐视觉手法 |
-|----------|-------------|
-| 架构/流程 | SVG 流程图 + 描边绘制动画 |
-| 数据增长 | 进度条 / 柱状图 CSS 动画填充 |
-| 对比数据 | 天平/跷跷板 SVG + 倾斜动画 |
-| 时间线 | 轨道 + 节点逐个点亮 |
-| 代码执行 | 终端样式 + 打字机逐行显示 |
-| 多选项 | 卡片翻转 / 手风琴展开 |
-
-### 实现约束
-
-- SVG 必须内联（不用外部文件）
-- 宽度设 `width="100%"`，高度设 `max-height` 约束
-- 动画用 CSS 控制，不用 SMIL（兼容性更好）
-- 配色引用主题 CSS 变量（如 `var(--accent-primary)`）
+### Visual Anti-Patterns
+| ❌ Prohibited | ✅ Alternative |
+|--------------|---------------|
+| Purple-pink / blue-purple diagonal gradient backgrounds (heavy AI aesthetic) | Use theme-defined backgrounds |
+| Decorative rounded cards with colored left border on every slide | Cards only in `card-grid` layout; borders use theme accent |
+| Emoji as icons | Use inline SVG or plain text without icons |
+| Gradient buttons with large pill-shaped corners | Flat buttons or ghost buttons |
+| Same decorative element on every slide (e.g., dots in top-right) | Vary decoration by layout, or remove it |
+| Fake data, fake logos, fake "XX million users" | Use placeholder notes marked "to be replaced" or real data |
 
 ---
 
-## 完整检查清单（补充 quality-checklist.md）
+## SVG & Visual Demos (Recommended Every 5 Slides)
 
-生成完成后额外检查：
+For 8+ slide decks, pure text + charts becomes monotonous. Insert an **inline SVG or CSS visual demo** approximately every 5 slides:
 
-- [ ] 相邻页面的主导动画/transition 不雷同
-- [ ] 同一页内 2+ fragments 使用了至少 2 种不同类型
-- [ ] 至少 1 处"表演性动画"（数字滚动/描边绘制/进度填充/打字机等）
-- [ ] 无持续循环的纯装饰动画（无 `infinite` 关键帧，除打字机光标外）
-- [ ] 动画时长使用非整数值（0.3s / 0.7s / 1.2s），避免机械感
-- [ ] 无 AI 视觉指纹（无紫粉渐变/emoji 图标/假数据）
-- [ ] 8+ 页 deck 至少有 1 处内联 SVG 或 CSS 视觉演示
-- [ ] per-slide transition 至少有 2 种不同设定
-- [ ] fragment 类型的选择与信息关系匹配（递进用 fade-up，对比用 fade-left/right 等）
+### Applicable Scenarios
+
+| Content Type | Recommended Visual Technique |
+|-------------|------------------------------|
+| Architecture / Process | SVG flowchart + stroke draw animation |
+| Data Growth | Progress bar / bar chart CSS fill animation |
+| Comparison Data | Scale / seesaw SVG + tilt animation |
+| Timeline | Track + nodes lighting up sequentially |
+| Code Execution | Terminal style + typewriter line-by-line reveal |
+| Multiple Options | Card flip / accordion expand |
+
+### Implementation Constraints
+
+- SVG must be inlined (no external files)
+- Set `width="100%"` with a `max-height` constraint
+- Use CSS for animation control, not SMIL (better compatibility)
+- Colors must reference theme CSS variables (e.g., `var(--accent-primary)`)
+
+---
+
+## Supplementary Checklist (extends quality-checklist.md)
+
+After generation, additionally verify:
+
+- [ ] Adjacent slides have different dominant animation / transition
+- [ ] Same-slide 2+ fragments use at least 2 different types
+- [ ] At least 1 "performance animation" (counter roll / stroke draw / bar fill / typewriter)
+- [ ] No perpetual decorative animations (no `infinite` keyframes, except typewriter cursor)
+- [ ] Animation durations use non-round values (0.3s / 0.7s / 1.2s) to avoid mechanical feel
+- [ ] No AI visual fingerprints (no purple-pink gradients / emoji icons / fake data)
+- [ ] 8+ slide deck has at least 1 inline SVG or CSS visual demo
+- [ ] Per-slide transition has at least 2 different settings
+- [ ] Fragment type selection matches information relationship (progressive → fade-up, contrast → fade-left/right)

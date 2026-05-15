@@ -1,4 +1,4 @@
-# Scatter Chart / 散点图
+# Scatter Chart
 
 Best for: correlation, clustering, distribution, outlier spotting, and comparing two quantitative dimensions at once
 

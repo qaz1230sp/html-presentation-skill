@@ -87,7 +87,7 @@ You can also install via the GitHub Copilot CLI skills management interface.
 Describe what you want in natural language:
 
 ```text
-> 帮我做一个关于微服务架构的 PPT
+> Make a presentation about microservices architecture
 ```
 
 ```text
@@ -99,14 +99,14 @@ Describe what you want in natural language:
 ```
 
 ```text
-> 把这份 Word 文档转成演示文稿
+> Turn this Word document into slides
 ```
 
 The AI reads SKILL.md, selects a theme, plans the slide sequence, assembles layouts from the component library, runs a 31-item quality checklist, and saves a single portable HTML file.
 
 ## Features
 
-- **16 slide layouts** — title-hero, two-column, card-grid, comparison, code-showcase, flowchart, timeline, stats-dashboard, table, and more
+- **17 slide layouts** — title-hero, two-column, card-grid, comparison, code-showcase, flowchart, timeline, stats-dashboard, terminal-demo, table, and more
 - **8 chart presets** — bar, line, pie, radar, scatter, funnel, gauge, treemap (powered by [ECharts 5](https://echarts.apache.org/))
 - **6 built-in themes** — from frosted glass to cyberpunk neon
 - **Document conversion** — Markdown, PDF, Word (.docx), PowerPoint (.pptx) → slides

@@ -1,4 +1,4 @@
-# Composition Rules / 组合规则
+# Composition Rules
 
 This file is the master assembly rulebook for slide composition. Use it after choosing a theme and before writing HTML. Its purpose is to keep decks coherent, varied, readable, and record-friendly.
 
@@ -164,6 +164,7 @@ Fragments are useful for pacing, but too many create spacebar fatigue.
 - Never fragment stat items, cards, or decorative elements.
 - If a slide needs more than its fragment allowance, split the slide.
 - **First-item-visible rule**: On any slide with a list or sequential items, the **first item must always be visible on slide entry** (not wrapped in a fragment). Only the 2nd item onward should be fragments. This ensures the slide never appears empty when first shown.
+- **Fragment type safety**: Only use **hiding fragments** (`fade-in`, `fade-up`, `fade-left`, `fade-right`, `zoom-in`) to reveal new content. Never use `highlight-current-blue` or `shrink` to show new items — they do not hide the element initially and will break the reveal sequence. See `rules/animation.md` for the full classification.
 
 ## Chart Placement Rules
 
@@ -224,12 +225,12 @@ Pick theme from content keywords, audience, and tone. Prefer the theme that fits
 
 | Theme | Keywords | Audience |
 | --- | --- | --- |
-| `glassmorphism` | 技术, 架构, 代码, API, 系统, engineering | 开发者, 技术团队 |
-| `apple-keynote` | 产品, 用户体验, 设计, 发布, launch | 产品经理, 设计师, 大众 |
-| `cyberpunk` | AI, 安全, 黑客, 前沿, hacking, ML | 极客, 安全团队 |
-| `gradient-story` | 博客, 学习, 分享, 开源, tutorial | 学习者, 社区 |
-| `editorial` | 报告, 分析, 研究, 数据, academic | 管理层, 研究员 |
-| `luxury-minimal` | 品牌, 投资, CEO, 高端, premium | 高管, 投资人 |
+| `glassmorphism` | tech, architecture, code, API, system, engineering | developers, tech teams |
+| `apple-keynote` | product, UX, design, launch, release | product managers, designers, general audience |
+| `cyberpunk` | AI, security, hacking, cutting-edge, ML | geeks, security teams |
+| `gradient-story` | blog, learning, sharing, open-source, tutorial | learners, community |
+| `editorial` | report, analysis, research, data, academic | executives, researchers |
+| `luxury-minimal` | brand, investment, CEO, premium, luxury | C-suite, investors |
 
 ### Theme Selection Heuristics
 

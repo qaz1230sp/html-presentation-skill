@@ -1,4 +1,4 @@
-# Radar Chart / 雷达图
+# Radar Chart
 
 Best for: capability comparisons, scorecards, maturity assessments, and showing strengths or gaps across a fixed set of dimensions
 

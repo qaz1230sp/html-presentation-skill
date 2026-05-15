@@ -1,4 +1,4 @@
-# Quote Highlight / 引言强调页
+# Quote Highlight
 
 Fragment count: 0 | Best for: memorable quotes, strategic principles, and audience reset moments
 

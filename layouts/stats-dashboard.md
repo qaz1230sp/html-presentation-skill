@@ -1,4 +1,4 @@
-# Stats Dashboard / 数据看板页
+# Stats Dashboard
 
 Fragment count: 0 | Best for: KPI summaries, benchmark snapshots, and executive evidence slides
 

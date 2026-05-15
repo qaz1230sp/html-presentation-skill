@@ -1,4 +1,4 @@
-# Section Divider / 章节分隔页
+# Section Divider
 
 Fragment count: 0 | Best for: visual chapter transitions, section introductions
 
@@ -33,7 +33,7 @@ Fragment count: 0 | Best for: visual chapter transitions, section introductions
 ```html
 <section class="title-slide" style="overflow:hidden;">
   <span class="tag" style="font-size:2.4em; font-weight:900; margin-bottom:16px;">02</span>
-  <h1 class="hero-title">技术架构</h1>
-  <p style="font-size:1.1em; opacity:0.7;">从设计到实现的完整链路</p>
+  <h1 class="hero-title">Technical Architecture</h1>
+  <p style="font-size:1.1em; opacity:0.7;">The complete path from design to implementation</p>
 </section>
 ```

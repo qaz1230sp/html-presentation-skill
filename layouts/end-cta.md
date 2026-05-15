@@ -1,4 +1,4 @@
-# End CTA / 结束行动页
+# End CTA
 
 Fragment count: 0 | Best for: closing thanks, next steps, contact details
 
@@ -6,7 +6,7 @@ Fragment count: 0 | Best for: closing thanks, next steps, contact details
 
 ```html
 <section class="end-slide" style="overflow:hidden;">
-  <h2><!-- PLACEHOLDER: Thank You / 谢谢 / THANKS --></h2>
+  <h2><!-- PLACEHOLDER: Thank You / THANKS --></h2>
   <div class="accent-line"></div>
   <p class="subtitle"><!-- PLACEHOLDER: speaker name · contact (optional) --></p>
 </section>
@@ -24,7 +24,7 @@ Fragment count: 0 | Best for: closing thanks, next steps, contact details
 
 ```html
 <section class="end-slide" style="overflow:hidden;">
-  <h2><!-- PLACEHOLDER: Q&A / 问答环节 --></h2>
+  <h2><!-- PLACEHOLDER: Q&A --></h2>
   <div class="accent-line"></div>
   <p class="subtitle"><!-- PLACEHOLDER: speaker name · contact --></p>
 </section>
