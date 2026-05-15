@@ -190,7 +190,7 @@ For showing multiple commands typed in sequence.
 .present .terminal-typing {
   animation: terminal-type 1.8s steps(var(--chars, 30), end) forwards;
 }
-.terminal-typing--delayed {
+.present .terminal-typing--delayed {
   animation-delay: 2.8s;
 }
 .terminal-caret {
@@ -206,12 +206,15 @@ For showing multiple commands typed in sequence.
   padding-left: 24px;
 }
 .present .terminal-line--output {
-  animation: terminal-output-reveal 0.5s ease-out forwards;
+  animation-name: terminal-output-reveal;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
-.terminal-line--d1 { animation-delay: 2.1s; }
-.terminal-line--d2 { animation-delay: 2.6s; }
-.terminal-line--d3 { animation-delay: 3.0s; }
-.terminal-line--d4 { animation-delay: 3.4s; }
+.present .terminal-line--d1 { animation-delay: 2.1s; }
+.present .terminal-line--d2 { animation-delay: 2.6s; }
+.present .terminal-line--d3 { animation-delay: 3.0s; }
+.present .terminal-line--d4 { animation-delay: 3.4s; }
 
 /* Side cards */
 .terminal-cards {

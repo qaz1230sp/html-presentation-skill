@@ -153,20 +153,41 @@ Based on the deep analysis, produce a **structured outline** and present it **in
 3. **Theme recommendation**: Which theme and why.
 4. **Total slide count** and estimated duration.
 
-**Example outline format:**
+**Save the outline to a project directory:**
 
+Each presentation is a **project**. Create a directory and save the outline:
+
+```text
+{output_dir}/{topic-slug}-{YYYY-MM-DD}/
+├── outline.md    ← structured outline (saved now)
+└── index.html    ← presentation file (saved in Step 8)
 ```
-📊 内容概要：介绍 AI 驱动的团队效率提升方案，面向技术管理层，核心结论是...
 
-| # | 布局 | 标题 | 要点 |
-|---|------|------|------|
-| 1 | title-hero | AI 驱动的团队效率提升 | 主标题 + 副标题 + 署名 |
-| 2 | bullet-points | 团队面临的挑战 | 知识分散 / 重复工作 / Onboarding 断层 |
-| 3 | two-column | 两大核心平台 | 左: LLM Wiki 编译器模式 / 右: Skill Hub 能力分发 |
-| ... | ... | ... | ... |
+Save the outline as `outline.md` in the project directory **before** asking the user to confirm. This gives the user a persistent artifact to review and edit.
 
-🎨 推荐主题：Glassmorphism（技术分享最佳）
-📄 共 11 页，预计 8-10 分钟
+**Example outline format (for outline.md):**
+
+```markdown
+# AI 驱动的团队效率提升 — 演示大纲
+
+## 内容概要
+介绍 AI 驱动的团队效率提升方案，面向技术管理层，核心结论是...
+
+## 幻灯片计划
+
+| # | 布局 | 标题 | 要点 | 动画 |
+|---|------|------|------|------|
+| 1 | title-hero | AI 驱动的团队效率提升 | 主标题 + 副标题 + 署名 | fade |
+| 2 | bullet-points | 团队面临的挑战 | 知识分散 / 重复工作 / Onboarding 断层 | 首项可见 |
+| 3 | two-column | 两大核心平台 | 左: LLM Wiki / 右: Skill Hub | 左右对向入场 |
+| ... | ... | ... | ... | ... |
+
+## 主题
+Glassmorphism（技术分享最佳）
+
+## 统计
+- 页数：11
+- 预计时长：8-10 分钟
 ```
 
 **Outline quality rules:**
@@ -309,16 +330,19 @@ Run the complete checklist in **Quality Checklist** before saving.
 
 ### Step 8: Save & Report
 
-Save to the configured `output_dir`.
-
-Recommended file naming:
+Save the HTML file as `index.html` inside the project directory created in Step 2:
 
 ```text
-{topic-slug}-{YYYY-MM-DD}.html
+{output_dir}/{topic-slug}-{YYYY-MM-DD}/
+├── outline.md    ← created in Step 2
+└── index.html    ← save here
 ```
 
+If the project directory was not created in Step 2 (e.g., simple topic request that skipped outline), create it now.
+
 Report:
-- saved file path
+- saved file path (full path to `index.html`)
+- project directory path
 - selected theme
 - total slide count
 - whether charts were included
